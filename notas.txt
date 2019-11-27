@@ -1,0 +1,30 @@
+//GET
+    /login
+    /registo
+    /feed
+    /feed?label=....
+    /feed?id=a...
+    >----download!!!!----<
+    /perfil/:id
+    /perfil/:id/ficheiros
+    
+
+//POST
+    ficheiros
+    /registo
+    /login
+
+-----publicaçoes (publico/grp/privado)
+
+
+/DELETE
+    ficheiro
+    conta
+
+//PUG
+Homepage
+feed inicial
+login
+registo
+perfil 
+ficheiros
