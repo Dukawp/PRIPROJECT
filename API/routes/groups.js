@@ -1,21 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var Users = require('../controllers/users')
+var Groups = require('../controllers/groups')
 
 router.get('/', function(req, res) {
 
-    //GET all users
-    Users.find()
+    //GET all groups
+    Groups.find()
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).json(error));
 
 });
 
-// GET one user
+// GET one group
 router.get('/:id', function(req, res) {
 
-    Users.findOne(req.params.id)
+    Groups.findOne(req.params.id)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).json(error));
   
