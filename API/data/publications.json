@@ -1,12 +1,16 @@
-{
-    "publications": [
-        {
-            "title": "Teste",
-            "text": "Teste",
-            "files": [],
-            "idUser": "",
-            "tags": [],
-            "idGroup": "public"
-        }
-    ]
-}
+[
+    {
+        "title": "Teste",
+        "text": "Teste",
+        "files": [],
+        "idUser": "",
+        "tags": [],
+        "idGroup": "public",
+        "comments": [
+            {
+                "idUser": "",
+                "comment": "Obrigado! :)"
+            }
+        ]
+    }
+]

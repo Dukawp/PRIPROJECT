@@ -1,12 +1,10 @@
-{
-    "users": [
-        {
-            "name": "Ricardo Neves",
-            "number": "a78764",
-            "email": "a78764@alunos.uminho.pt",
-            "password": "123456",
-            "groups": ["4ano", "pri"],
-            "photo": ""
-        }
-    ]
-}
+[
+    {
+        "name": "Ricardo Neves",
+        "number": "a78764",
+        "email": "a78764@alunos.uminho.pt",
+        "password": "123456",
+        "groups": ["4ano", "pri"],
+        "photo": ""
+    }
+]
