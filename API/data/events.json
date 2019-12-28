@@ -1,9 +1,20 @@
 [
     {
+        "name": "Teste de GCS",
+        "description": "Teste escrito de Gramáticas e Compreensão de Software",
+        "startDate": "06-01-2020",
+        "endDate": "06-01-2020"
+    },
+    {
         "name": "Teste de PRI",
         "description": "Teste escrito de Processamento e Representação de Informação",
-        "startDate": "16-01-2020",
-        "endDate": "16-01-2020",
-        "idUsers": []
+        "startDate": "13-01-2020",
+        "endDate": "13-01-2020"
+    },
+    {
+        "name": "Workshop de NodeJS",
+        "description": "Workshop de NodeJS para todos os alunos sócios do CESIUM",
+        "startDate": "14-01-2020",
+        "endDate": "15-01-2020"
     }
 ]

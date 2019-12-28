@@ -3,8 +3,56 @@
         "name": "Ricardo Neves",
         "number": "a78764",
         "email": "a78764@alunos.uminho.pt",
-        "password": "123456",
-        "groups": ["4ano", "pri"],
-        "photo": ""
+        "password": "a78764",
+        "groups": ["PRI", "4 ano"],
+        "events": ["Teste de GCS", "Teste de PRI"]
+    },
+    {
+        "name": "José Carlos Ramalho",
+        "number": "jcr",
+        "email": "jcr@di.uminho.pt",
+        "password": "jcr",
+        "groups": ["PRI"],
+        "events": ["Teste de PRI"]
+    },
+    {
+        "name": "André Vieira",
+        "number": "a78322",
+        "email": "a78322@di.uminho.pt",
+        "password": "a78322",
+        "groups": [],
+        "events": ["Workshop de NodeJS"]
+    },
+    {
+        "name": "Eduardo Rocha",
+        "number": "a77048",
+        "email": "a77048@di.uminho.pt",
+        "password": "a77048",
+        "groups": ["PRI"],
+        "events": ["Teste de PRI"]
+    },
+    {
+        "name": "Carlos Pedrosa",
+        "number": "a77320",
+        "email": "a77320@di.uminho.pt",
+        "password": "a77320",
+        "groups": [],
+        "events": []
+    },
+    {
+        "name": "David Sousa",
+        "number": "a78938",
+        "email": "a78938@di.uminho.pt",
+        "password": "a78938",
+        "groups": [],
+        "events": ["Workshop de NodeJS"]
+    },
+    {
+        "name": "Manuel Sousa",
+        "number": "a78869",
+        "email": "a78869@di.uminho.pt",
+        "password": "a78869",
+        "groups": ["PRI"],
+        "events": ["Teste de PRI"]
     }
 ]
