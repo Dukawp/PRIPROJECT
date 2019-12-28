@@ -8,6 +8,74 @@ html(lang='en')
         meta(http-equiv='x-ua-compatible', content='ie=edge')
         title WorkIT | #{title}
         link(rel='stylesheet', href='/stylesheets/bootstrap.min.css', crossorigin='anonymous')
+        link(rel='stylesheet', href='/stylesheets/icon.css')
+        link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+        link(rel='stylesheet', href='/stylesheets/full-slider.css')
     body   
         include navbar
-
+        header(class='img-responsive')
+            #carouselExampleIndicators.carousel.slide(data-ride='carousel')
+                ol.carousel-indicators
+                    li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+                    li(data-target='#carouselExampleIndicators', data-slide-to='1')
+                    li(data-target='#carouselExampleIndicators', data-slide-to='2')
+                    li(data-target='#carouselExampleIndicators', data-slide-to='3')
+                .carousel-inner(role='listbox')
+                    //primeiro slide - o link é definido na linha abaixo
+                    .carousel-item.active(style="background-image: url('https://i.imgur.com/ReXbOpj.jpg')")
+                        .carousel-caption.d-none.d-md-block
+                            .main.container.text-xs-center
+                                br
+                                br
+                                br
+                                br
+                                img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:100px; display: inline-block;' class='img-fluid')
+                                br
+                                br
+                                h6 This is WorkIT, share your work with your coleagues.
+                                br 
+                    .carousel-item(style="background-image: url('https://i.imgur.com/Mz3rH7D.jpg')")
+                        .carousel-caption.d-none.d-md-block
+                            .main.container.text-xs-center
+                                br
+                                br
+                                br
+                                br
+                                img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:100px; display: inline-block;' class='img-fluid')
+                                br
+                                br
+                                h6 This is WorkIT, share your work with your coleagues.
+                                br
+                    .carousel-item(style="background-image: url('https://i.imgur.com/yF4VQ35.jpg')")
+                        .carousel-caption.d-none.d-md-block
+                            .main.container.text-xs-center
+                                br
+                                br
+                                br
+                                br
+                                img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:100px; display: inline-block;' class='img-fluid')
+                                br
+                                br
+                                h6 This is WorkIT, share your work with your coleagues.
+                                br
+                    .carousel-item(style="background-image: url('https://i.imgur.com/EfUoRRo.jpg')")
+                        .carousel-caption.d-none.d-md-block
+                            .main.container.text-xs-center
+                                br
+                                br
+                                br
+                                br
+                                img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:100px; display: inline-block;' class='img-fluid')
+                                br
+                                br
+                                h6 This is WorkIT, share your work with your coleagues.
+                                br
+                a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+                    span.carousel-control-prev-icon(aria-hidden='true')
+                    span.sr-only Previous
+                a.carousel-control-nex(href='#carouselExampleIndicators', role='button', data-slide='next')
+                    span.carousel-control-next-icon(aria-hidden='true')
+                    span.sr-only Next
+        block content
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', crossorigin='anonymous')
