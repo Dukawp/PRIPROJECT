@@ -5,8 +5,7 @@ var eventsSchema = new mongoose.Schema({
     name: {type: String, required: true},
     descripton: String,
     startDate: {type: String, required: true},
-    endDate: {type: String, required: true},
-    idUsers: [String]
+    endDate: {type: String, required: true}
 
 },
 {

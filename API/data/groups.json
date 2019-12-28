@@ -1,12 +1,14 @@
 [
     {
-        "name": "pri",
-        "photo": "",
-        "description": "Processamento e Representação de Informação"
+        "name": "PRI",
+        "description": "Grupo para os alunos de Processamento e Representação de Informação"
     },
     {
-        "name": "4ano",
-        "photo": "",
-        "description": "Grupo do 4o ano"
+        "name": "4 ano",
+        "description": "Grupo para os alunos de quarto ano de MIEI"
+    },
+    {
+        "name": "CESIUM",
+        "description": "Grupo para os alunos sócios do CESIUM"
     }
 ]

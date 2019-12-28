@@ -7,7 +7,8 @@ var usersSchema = new mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     groups: [String],
-    photo: {type: String, required: true}
+    events: [String],
+    photo: String
 
 },
 {

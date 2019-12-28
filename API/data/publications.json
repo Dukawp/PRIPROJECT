@@ -1,15 +1,52 @@
 [
     {
-        "title": "Teste",
-        "text": "Teste",
-        "files": [],
-        "idUser": "",
-        "tags": [],
-        "idGroup": "public",
+        "title": "Teste de PRI",
+        "text": "Aconselho a todos os alunos que irão fazer o teste de PRI que entrem no nosso grupo, para partilhar duvidas e resoluções de exercícios.",
+        "author": "jcr",
+        "tags": ["pri", "plc", "4ano"],
+        "target": "public",
         "comments": [
             {
-                "idUser": "",
-                "comment": "Obrigado! :)"
+                "commentAuthor": "a77048",
+                "commentText": "Obrigado! Vou já entrar..."
+            }
+        ]
+    },
+    {
+        "title": "Oferta de habitação",
+        "text": "Oferta de habitação durante o periodo escolar, M/F. Contactar o meu email para mais informações.",
+        "author": "a78869",
+        "tags": ["quarto", "habitação"],
+        "target": "public",
+        "comments": []
+    },
+    {
+        "title": "Dúvida de PRI",
+        "text": "Boas pessoal. Qual é o package necessário para conectar a API com o Mongo?",
+        "author": "a78869",
+        "tags": ["pri", "plc", "duvidas"],
+        "target": "PRI",
+        "comments": [
+        	{
+                "commentAuthor": "a77048",
+                "commentText": "É o Mongoose."
+            },
+            {
+                "commentAuthor": "a78869",
+                "commentText": "Ah, pois, obrigado! :)"
+            }
+        ]
+    },
+    {
+        "title": "Hora de inicio?",
+        "text": "Boa tarde. A que horas começa o workshop no dia 14?",
+        "author": "a78938",
+        "tags": ["workshop", "nodejs"],
+        "target": "Workshop de NodeJS",
+        "comments": [
+        	{
+                "commentAuthor": "a78322",
+                "commentText": "Começa às 15 horas."
             }
         ]
     }
