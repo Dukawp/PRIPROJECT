@@ -11,3 +11,23 @@ module.exports.findOne = id => {
         .findOne({_id: id})
         .exec()
 }
+
+module.exports.findByName = name => {
+    return Event
+        .find({name: {$regex: '.*' + name + '.*'}})
+        .exec()
+}
+
+module.exports.sortByStartDate = () => {
+    return Event
+        .find()
+        .sort({startDate: 1})
+        .exec()
+}
+
+module.exports.sortByEndDate = () => {
+    return Event
+        .find()
+        .sort({endDate: 1})
+        .exec()
+}

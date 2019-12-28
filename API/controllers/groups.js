@@ -11,3 +11,9 @@ module.exports.findOne = id => {
         .findOne({_id: id})
         .exec()
 }
+
+module.exports.findByName = name => {
+    return Group
+        .find({name: {$regex: '.*' + name + '.*'}})
+        .exec()
+}

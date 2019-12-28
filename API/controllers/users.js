@@ -6,8 +6,8 @@ module.exports.find = () => {
         .exec()
 }
 
-module.exports.findOne = id => {
+module.exports.findOne = number => {
     return User
-        .findOne({_id: id})
+        .findOne({number: number})
         .exec()
 }
