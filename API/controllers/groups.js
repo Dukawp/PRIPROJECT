@@ -17,3 +17,8 @@ module.exports.findByName = name => {
         .find({name: {$regex: '.*' + name + '.*'}})
         .exec()
 }
+
+module.exports.insert = g => {
+    var newGroup = new Group(g);
+    return newGroup.save();
+}

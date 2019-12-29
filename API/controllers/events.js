@@ -31,3 +31,8 @@ module.exports.sortByEndDate = () => {
         .sort({endDate: 1})
         .exec()
 }
+
+module.exports.insert = e => {
+    var newEvent = new Event(e);
+    return newEvent.save();
+}

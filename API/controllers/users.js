@@ -11,3 +11,8 @@ module.exports.findOne = number => {
         .findOne({number: number})
         .exec()
 }
+
+module.exports.insert = u => {
+    var newUser = new User(u);
+    return newUser.save();
+}
