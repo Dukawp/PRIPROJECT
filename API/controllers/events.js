@@ -36,3 +36,9 @@ module.exports.insert = e => {
     var newEvent = new Event(e);
     return newEvent.save();
 }
+
+module.exports.remove = id => {
+    return Event
+        .deleteOne({_id: id})
+        .exec()
+}

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var Groups = require('../controllers/groups')
+var Groups = require('../controllers/groups');
 
 router.get('/', passport.authenticate('jwt', {session:false}), function(req, res) {
 
@@ -11,7 +11,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
 
     Groups.findByName(req.query.name)
       .then(data => res.jsonp(data))
-      .catch(error => res.status(500).json(error));
+      .catch(error => res.status(500).jsonp(error));
 
   }
   else{
@@ -19,7 +19,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
     //GET all groups
     Events.find()
       .then(data => res.jsonp(data))
-      .catch(error => res.status(500).json(error));
+      .catch(error => res.status(500).jsonp(error));
 
   }
 
@@ -30,7 +30,7 @@ router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, 
 
   Groups.findOne(req.params.id)
     .then(data => res.jsonp(data))
-    .catch(error => res.status(500).json(error));
+    .catch(error => res.status(500).jsonp(error));
   
 });
 
@@ -38,8 +38,17 @@ router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, 
 router.post('/', passport.authenticate('jwt', {session:false}), function(req, res){
 
   Group.insert(req.body)
-    .then(data => res.jsonp(date))
+    .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
+
+});
+
+// DELETE group
+router.delete('/:id', passport.authenticate('jwt', {session:false}), function(req, res){
+
+  Groups.remove(req.params.id)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
 
 });
 

@@ -16,3 +16,9 @@ module.exports.insert = u => {
     var newUser = new User(u);
     return newUser.save();
 }
+
+module.exports.remove = id => {
+    return User
+        .deleteOne({_id: id})
+        .exec()
+}

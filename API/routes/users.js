@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var Users = require('../controllers/users')
+var Users = require('../controllers/users');
 
-router.get('/', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/', function(req, res) {
 
   //GET all users
   Users.find()
@@ -14,20 +14,29 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
 });
 
 // GET one user by number
-router.get('/:number', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/:number', passport.authenticate('jwt', {session: false}), function(req, res) {
 
   Users.findOne(req.params.number)
     .then(data => res.jsonp(data))
-    .catch(error => res.status(500).json(perror));
+    .catch(error => res.status(500).jsonp(error));
   
 });
 
 // POST new user
-router.post('/', passport.authenticate('jwt', {session:false}), function(req, res){
+router.post('/', function(req, res) {
 
   Users.insert(req.body)
-    .then(data => res.jsonp(date))
+    .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
+
+});
+
+// DELETE user
+router.delete('/:id', function(req, res) {
+
+  Users.remove(req.params.id)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
 
 });
 

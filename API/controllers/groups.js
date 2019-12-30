@@ -22,3 +22,9 @@ module.exports.insert = g => {
     var newGroup = new Group(g);
     return newGroup.save();
 }
+
+module.exports.remove = id => {
+    return Group
+        .deleteOne({_id: id})
+        .exec()
+}

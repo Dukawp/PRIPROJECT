@@ -23,3 +23,9 @@ module.exports.insert = p => {
     var newPublication = new Publication(p);
     return newPublication.save();
 }
+
+module.exports.remove = id => {
+    return Publication
+        .deleteOne({_id: id})
+        .exec()
+}
