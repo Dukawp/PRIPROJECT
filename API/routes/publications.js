@@ -8,7 +8,7 @@ var upload = multer({dest: 'uploads/'});
 var Publications = require('../controllers/publications');
 var Publication = require('../models/publications')
 
-router.get('/', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/', function(req, res) {
 
   //GET all publications
   Publications.find()
@@ -18,7 +18,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
 });
 
 // GET one publication by id
-router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/:id', function(req, res) {
 
   Publications.findOne(req.params.id)
     .then(data => res.jsonp(data))
@@ -27,7 +27,7 @@ router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, 
 });
 
 // POST new publication
-router.post('/', passport.authenticate('jwt', {session:false}), upload.array('file'), function(req, res) {
+router.post('/', upload.array('file'), function(req, res) {
 
   Publications.insert(req.body)
   .then(data => res.jsonp(data))
@@ -36,7 +36,7 @@ router.post('/', passport.authenticate('jwt', {session:false}), upload.array('fi
 });
 
 // DELETE publication
-router.delete('/:id', passport.authenticate('jwt', {session:false}), function(req, res){
+router.delete('/:id', function(req, res){
 
   Publications.remove(req.params.id)
     .then(data => res.jsonp(data))

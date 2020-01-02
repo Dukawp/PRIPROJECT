@@ -4,7 +4,7 @@ var passport = require('passport');
 
 var Groups = require('../controllers/groups');
 
-router.get('/', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/', function(req, res) {
 
   // GET one group by name
   if(req.query.name){
@@ -26,7 +26,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
 });
 
 // GET one group by id
-router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/:id', function(req, res) {
 
   Groups.findOne(req.params.id)
     .then(data => res.jsonp(data))
@@ -35,7 +35,7 @@ router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, 
 });
 
 // POST new group
-router.post('/', passport.authenticate('jwt', {session:false}), function(req, res){
+router.post('/', function(req, res){
 
   Group.insert(req.body)
     .then(data => res.jsonp(data))
@@ -44,7 +44,7 @@ router.post('/', passport.authenticate('jwt', {session:false}), function(req, re
 });
 
 // DELETE group
-router.delete('/:id', passport.authenticate('jwt', {session:false}), function(req, res){
+router.delete('/:id', function(req, res){
 
   Groups.remove(req.params.id)
     .then(data => res.jsonp(data))

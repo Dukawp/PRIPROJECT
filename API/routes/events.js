@@ -4,7 +4,7 @@ var passport = require('passport');
 
 var Events = require('../controllers/events');
 
-router.get('/', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/', function(req, res) {
 
   // GET one event by name
   if(req.query.name){
@@ -25,7 +25,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req, res
 });
 
 // GET one event by id
-router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, res) {
+router.get('/:id', function(req, res) {
 
   Events.findOne(req.params.id)
     .then(data => res.jsonp(data))
@@ -34,7 +34,7 @@ router.get('/:id', passport.authenticate('jwt', {session:false}), function(req, 
 });
 
 // POST new event
-router.post('/', passport.authenticate('jwt', {session:false}), function(req, res){
+router.post('/', function(req, res){
 
   Events.insert(req.body)
     .then(data => res.jsonp(data))
@@ -43,7 +43,7 @@ router.post('/', passport.authenticate('jwt', {session:false}), function(req, re
 });
 
 // DELETE event
-router.delete('/:id', passport.authenticate('jwt', {session:false}), function(req, res){
+router.delete('/:id', function(req, res){
 
   Events.remove(req.params.id)
     .then(data => res.jsonp(data))

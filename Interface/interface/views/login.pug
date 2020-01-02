@@ -5,14 +5,14 @@ block content
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 Log In
-        form(method='POST' action='auth/login')
+        form(action='/login' method='POST')
           div.form-group
-            label(for='studentnr' class='cols-sm-2 control-label') Student Number:
+            label(for='number' class='cols-sm-2 control-label') Student Number:
             div(class='cols-sm-10')
               div(class='input-group')
                 span(class='input-group-addon')
                   i(class='fa fa-user fa' aria-hidden='true')
-                input(type='text' class='form-control' name='studentnr' id='studentnr' placeholder='Axxxxx')
+                input(type='text' class='form-control' name='number' id='number' placeholder='axxxxx')
           div.form-group
             label(for='password' class='cols-sm-2 control-label') Password:
             div(class='cols-sm-10')
@@ -22,6 +22,6 @@ block content
                 input(type='password' class='form-control' name='password' id='password' placeholder='*******')     
           div.form-group
             button.btn.btn-primary(type='submit' style='width:100%;') Login
-            button.btn.btn-light(href='/auth/register' style='width:100%; padding-top:10px;') Register
+            button.btn.btn-light(href='/register' style='width:100%; padding-top:10px;') Register
           
 

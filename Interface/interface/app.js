@@ -26,17 +26,20 @@ passport.use(new LocalStrategy(
       expiresIn: 3000,
       issuer: "PRI Server"
     })
-
+    console.log("Passport use!");
     axios.get('http://localhost:5012/users/' + number + '?token=' + token)
       .then(dados => {
 
         const user = dados.data;
         if(!user){
+          console.log("User not found!");
           return done(null, false, {message: 'User not found!\n'});
         }
-        if(!bcrypt.compareSync(password, user.password)){
-          return done(null, false, {message: 'Password incorrect!\n'});
-        }
+        /*if(!bcrypt.compareSync(password, user.password)){
+          console.log(password);
+          console.log(user.password);
+          return done(null, false, {message: 'Wrong password!\n'});
+        }*/
         return done(null, user);
       })
       .catch(error => done(error))
@@ -55,7 +58,7 @@ passport.serializeUser((user, done) => {
 // Deserialization: get user information from his id
 passport.deserializeUser((number, done) => {
 
-  var token = jwt.sign({}, 'pri2019',
+  var token = jwt.sign({}, "pri2019",
   {
     expiresIn: 3000,
     issuer: 'PRI Server'
@@ -69,7 +72,7 @@ passport.deserializeUser((number, done) => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var auth = require('./routes/auth');
+//var auth = require('./routes/auth');
 
 var app = express();
 
@@ -106,7 +109,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', auth);
+//app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
