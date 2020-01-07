@@ -1,17 +1,18 @@
 extends layout
 
 block content
-  button.w3-btn.w3-round-large(onclick="window.location.href = '/logout'") Logout
-  h1 Feed
-  table(border="1")
-    tr
-      th ID
-      th Title
-      th Text
-      th Author
-    each p in list
-      tr
-        td= p._id
-        td= p.title
-        td= p.text
-        td= p.author
+  .main.container
+       button.w3-btn.w3-round-large(onclick="window.location.href = '/logout'") Logout
+       h1 Feed
+        table(border="1")
+          tr
+            th ID
+            th Title
+            th Text
+            th Author
+          each p in list
+            tr
+              td= p._id
+              td= p.title
+              td= p.text
+              td= p.author

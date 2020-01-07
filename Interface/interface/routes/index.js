@@ -36,10 +36,6 @@ router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
 });
 
-router.get('/register', function(req, res) {
-  res.render('register', { title: 'Register' });
-});
-
 router.post('/login', passport.authenticate('local',
 
   { successRedirect: '/feed',
@@ -48,6 +44,26 @@ router.post('/login', passport.authenticate('local',
     failureFlash: 'Wrong credentials...'
   }
 ));
+
+router.get('/register', function(req, res) {
+  res.render('register', { title: 'Register' });
+});
+
+router.post('/register', function(req, res) {
+
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  axios.post('http://localhost:5012/users', {
+
+    name: req.body.name,
+    number: req.body.number,
+    email: req.body.email,
+    password: hash
+
+  })
+    .then(data => res.redirect('/login'))
+    .then(error => res.render('error', {error: error}))
+
+});
 
 router.get('/about', function(req, res) {
   res.render('about', { title: 'About' });
