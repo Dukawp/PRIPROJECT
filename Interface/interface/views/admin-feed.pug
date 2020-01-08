@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .main.container
+       button.w3-btn.w3-round-large(onclick="window.location.href = '/auth/logout'") Logout
+       h1 Admin Page
+        table(border="1")
+          tr
+            th ID
+            th Title
+            th Text
+            th Date
+            th File Path
+            th File Type
+            th Tags
+            th Target
+            th Author
+            th Comments
+          each p in feed
+            tr
+              td= p._id
+              td= p.title
+              td= p.text
+              td= p.date
+              td= p.filePath
+              td= p.fileMimetype
+              td= p.tags
+              td= p.target
+              td= p.author
+              
+                each c in p.comments
+                  td= c.commentText

@@ -5,7 +5,7 @@ block content
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 Log In
-        form(action='/login' method='POST')
+        form(action='/auth/login' method='POST')
           div.form-group
             label(for='number' class='cols-sm-2 control-label') Student Number:
             div(class='cols-sm-10')
@@ -24,5 +24,5 @@ block content
             button.btn.btn-primary(type='submit' style='width:100%;') Login
 
 
-    button.btn.btn-light(href='/register' style='width:100%; padding-top:10px;') Register
+    button.btn.btn-light(href='/auth/register' style='width:100%; padding-top:10px;') Register
         

@@ -26,6 +26,7 @@ passport.use(new LocalStrategy(
       expiresIn: 3000,
       issuer: "PRI Server"
     })
+
     console.log("Passport use!");
     axios.get('http://localhost:5012/users/' + number + '?token=' + token)
       .then(dados => {
@@ -61,7 +62,7 @@ passport.deserializeUser((number, done) => {
   var token = jwt.sign({}, "pri2019",
   {
     expiresIn: 3000,
-    issuer: 'PRI Server'
+    issuer: "PRI Server"
   })
 
   console.log('Going to deserialize user ' + number);
@@ -72,7 +73,9 @@ passport.deserializeUser((number, done) => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//var auth = require('./routes/auth');
+var adminRouter = require('./routes/admin');
+var authRouter = require('./routes/auth');
+var feedRouter = require('./routes/feed')
 
 var app = express();
 
@@ -109,7 +112,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//app.use('/auth', auth);
+app.use('/admin', adminRouter);
+app.use('/auth', authRouter);
+app.use('/feed', feedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

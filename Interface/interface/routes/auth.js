@@ -4,36 +4,8 @@ var axios = require('axios');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
 
-router.get('/', verifyAuthetication, function(req, res) {
-
-  axios.get('http://localhost:5012/publications')
-    .then(dados => res.render('feed', {list: dados.data}))
-    .catch(error => res.render('error', {error: error}))
-
-});
-
-router.get('/:id', verifyAuthetication, function(req, res) {
-
-  axios.get('http://localhost:5012/publications/' + req.params.id)
-    .then(dados => res.render('publication', {publication: dados.data}))
-    .catch(error => res.render('error', {error: error}))
-
-});
-
-router.get('/logout', verifyAuthetication, function(req, res) {
-
-  req.logout();
-  res.redirect('/login');
-
-});
-
-/* GET login page. */
-router.get('/login', function(req, res, next) {
+router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
-});
-
-router.get('/register', function(req, res) {
-  res.render('register', { title: 'Register' });
 });
 
 router.post('/login', passport.authenticate('local',
@@ -45,6 +17,33 @@ router.post('/login', passport.authenticate('local',
   }
 ));
 
+router.get('/register', function(req, res) {
+  res.render('register', { title: 'Register' });
+});
+
+router.post('/register', function(req, res) {
+
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  axios.post('http://localhost:5012/users', {
+
+    name: req.body.name,
+    number: req.body.number,
+    email: req.body.email,
+    password: hash
+
+  })
+    .then(data => res.redirect('/login'))
+    .then(error => res.render('error', {error: error}))
+
+});
+
+router.get('/logout', verifyAuthetication, function(req, res) {
+
+  req.logout();
+  res.redirect('../');
+
+});
+
 function verifyAuthetication(req, res, next){
 
   if(req.isAuthenticated()){
@@ -54,6 +53,6 @@ function verifyAuthetication(req, res, next){
   else{
     res.redirect('/login');
   }
-}
+};
 
 module.exports = router;

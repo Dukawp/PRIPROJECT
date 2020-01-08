@@ -2,7 +2,7 @@ extends layout
 
 block content
   .main.container
-       button.w3-btn.w3-round-large(onclick="window.location.href = '/logout'") Logout
+       button.w3-btn.w3-round-large(onclick="window.location.href = '/auth/logout'") Logout
        h1 Feed
         table(border="1")
           tr
@@ -10,7 +10,7 @@ block content
             th Title
             th Text
             th Author
-          each p in list
+          each p in feed
             tr
               td= p._id
               td= p.title
