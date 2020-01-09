@@ -12,6 +12,16 @@ router.get('/feed', verifyAuthetication, function(req, res) {
     
 });
 
+router.delete('/feed/:id', verifyAuthetication, function(req, res) {
+
+    var id = req.params.id;
+
+    axios.delete('http://localhost:5012/publications/' + id)
+      .then(data => res.redirect('/admin/feed'))
+      .catch(error => res.render('error', {error: error}))
+
+});
+
 router.get('/users', verifyAuthetication, function(req, res) {
 
     axios.get('http://localhost:5012/users/')

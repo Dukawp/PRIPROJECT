@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register
+        form(action='/feed/newPublication' method='POST')
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Title:
+                    input(type='text' class='form-control' name='title' id='title')  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Text:
+                    input(type='text' class='form-control' name='text' id='text')  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Tags:
+                    input(type='text' class='form-control' name='tags' id='tags')  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
+                    input(type='text' class='form-control' name='target' id='target')  
+            div.form-group
+                button.btn.btn-primary(type='submit' style='width:100%;') Send

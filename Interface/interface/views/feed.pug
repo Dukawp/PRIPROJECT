@@ -2,17 +2,16 @@ extends layout
 
 block content
   .main.container
-       button.w3-btn.w3-round-large(onclick="window.location.href = '/auth/logout'") Logout
-       h1 Feed
-        table(border="1")
-          tr
-            th ID
-            th Title
-            th Text
-            th Author
-          each p in feed
-            tr
-              td= p._id
-              td= p.title
-              td= p.text
-              td= p.author
+    button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
+    button.btn.btn-primary(onclick="window.location.href = '/feed/newPublication'") Create New Publication
+    h1 Feed
+    each p in feed
+      h3= p.title
+      div= p.text
+      h3 Author:
+      div= p.author
+      each c in p.comments
+        h3 Comment:
+        div= c.commentAuthor 
+        div= c.commentText
+      h3 ------------------------------------------------------------
