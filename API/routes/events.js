@@ -27,7 +27,8 @@ router.get('/', function(req, res) {
 // GET one event by id
 router.get('/:id', function(req, res) {
 
-  Events.findOne(req.params.id)
+  var id = req.params.id;
+  Events.findOne(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
   
@@ -36,6 +37,8 @@ router.get('/:id', function(req, res) {
 // POST new event
 router.post('/', function(req, res){
 
+  console.log('API:');
+  console.log(req.body);
   Events.insert(req.body)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
@@ -45,7 +48,8 @@ router.post('/', function(req, res){
 // DELETE event
 router.delete('/:id', function(req, res){
 
-  Events.remove(req.params.id)
+  var id= req.params.id;
+  Events.remove(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error))
 

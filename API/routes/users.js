@@ -16,6 +16,7 @@ router.get('/', function(req, res) {
 // GET one user by number
 router.get('/:number', passport.authenticate('jwt', {session: false}), function(req, res) {
 
+  var number = req.params.number;
   Users.findOne(req.params.number)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
@@ -34,7 +35,8 @@ router.post('/', function(req, res) {
 // DELETE user
 router.delete('/:id', function(req, res) {
 
-  Users.remove(req.params.id)
+  var id = req.params.id;
+  Users.remove(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error))
 

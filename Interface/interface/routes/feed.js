@@ -23,13 +23,14 @@ router.get('/', verifyAuthetication, function(req, res) {
 
 router.get('/newPublication', verifyAuthetication, function(req, res) {
 
-  res.render('newPublication', { title: 'Create New Publication' });
+  res.render('newPublication');
 
 });
 
 router.get('/:id', verifyAuthetication, function(req, res) {
 
-  axios.get('http://localhost:5012/publications/' + req.params.id)
+  var id = req.params.id;
+  axios.get('http://localhost:5012/publications/' + id)
       .then(data => res.render('publication', {publication: data.data}))
       .catch(error => res.render('error', {error: error}))
 
@@ -37,11 +38,13 @@ router.get('/:id', verifyAuthetication, function(req, res) {
 
 router.post('/newPublication', verifyAuthetication, function(req, res) {
 
+    var reg = new Date();
+
     axios.post('http://localhost:5012/publications', {
 
       title: req.body.title,
       text: req.body.text,
-      date: new Date(Date.now()).toISOString,
+      date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDay() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
       tags: req.body.tags,
       author: req.session.passport.user,
       target: req.body.target
@@ -51,7 +54,6 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
       .catch(error => res.render('error', {error: error}))
 });
   
-
 function verifyAuthetication(req, res, next){
 
     if(req.isAuthenticated()){

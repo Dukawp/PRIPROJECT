@@ -75,7 +75,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
-var feedRouter = require('./routes/feed')
+var feedRouter = require('./routes/feed');
+var groupsRouter = require('./routes/groups');
+var eventsRouter = require('./routes/events');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -115,6 +118,9 @@ app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/feed', feedRouter);
+app.use('/groups', groupsRouter);
+app.use('/events', eventsRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

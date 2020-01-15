@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
   else{
 
     //GET all groups
-    Events.find()
+    Groups.find()
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error));
 
@@ -28,7 +28,8 @@ router.get('/', function(req, res) {
 // GET one group by id
 router.get('/:id', function(req, res) {
 
-  Groups.findOne(req.params.id)
+  var id = req.params.id;
+  Groups.findOne(d)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
   
@@ -37,7 +38,9 @@ router.get('/:id', function(req, res) {
 // POST new group
 router.post('/', function(req, res){
 
-  Group.insert(req.body)
+  console.log('API:');
+  console.log(req.body);
+  Groups.insert(req.body)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
 
@@ -46,7 +49,8 @@ router.post('/', function(req, res){
 // DELETE group
 router.delete('/:id', function(req, res){
 
-  Groups.remove(req.params.id)
+  var id = req.params.id;
+  Groups.remove(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error))
 

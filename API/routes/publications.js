@@ -20,7 +20,8 @@ router.get('/', function(req, res) {
 // GET one publication by id
 router.get('/:id', function(req, res) {
 
-  Publications.findOne(req.params.id)
+  var id = req.params.id;
+  Publications.findOne(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
   
@@ -29,6 +30,8 @@ router.get('/:id', function(req, res) {
 // POST new publication
 router.post('/', upload.array('file'), function(req, res) {
 
+  console.log('API:');
+  console.log(req.body);
   Publications.insert(req.body)
   .then(data => res.jsonp(data))
   .catch(error => res.status(500).jsonp(error));
@@ -38,7 +41,9 @@ router.post('/', upload.array('file'), function(req, res) {
 // DELETE publication
 router.delete('/:id', function(req, res){
 
-  Publications.remove(req.params.id)
+  var id = req.params.id;
+  console.log('API: delete publication ID: ' + id);
+  Publications.remove(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error))
 

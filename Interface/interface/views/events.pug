@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .main.container
+       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
+        button.btn.btn-primary(onclick="window.location.href = '/events/newEvent'") Create New Event
+       h1 Events
+        table(border="1")
+          tr
+            th Name
+            th Description
+            th Start Date
+            th End Date
+            th Options
+            each e in events
+              tr
+                td= e.name
+                td= e.description
+                td= e.startDate
+                td= e.endDate
+                td
+                  button.btn.btn-primary(onclick="joinEvent('" + e._id + "')") Join

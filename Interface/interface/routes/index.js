@@ -6,15 +6,21 @@ var bcrypt = require('bcryptjs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+
+  res.render('index');
+
 });
 
 router.get('/team', function(req, res) {
-  res.render('team', { title: 'Team' });
+
+  res.render('team');
+
 });
 
 router.get('/about', function(req, res) {
-  res.render('about', { title: 'About' });
+
+  res.render('about');
+  
 });
 
 module.exports = router;

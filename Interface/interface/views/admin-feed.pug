@@ -17,18 +17,25 @@ block content
             th Author
             th Comments
             th Control
-          each p in feed
-            tr
-              td= p._id
-              td= p.title
-              td= p.text
-              td= p.date
-              td= p.filePath
-              td= p.fileMimetype
-              td= p.tags
-              td= p.target
-              td= p.author
-              each c in p.comments
-                td= c.commentText
-              td
-                button.btn.btn-primary(onclick="deletePublication('" + p._id + "')") Delete
+            each p in feed
+              tr
+                td= p._id
+                td= p.title
+                td= p.text
+                td= p.date
+                td= p.filePath
+                td= p.fileMimetype
+                td= p.tags
+                td= p.target
+                td= p.author
+                td
+                  table(border="1")
+                    tr
+                      th Author
+                      th Text
+                      each c in p.comments
+                        tr
+                          td= c.commentAuthor
+                          td= c.commentText
+                td
+                  button.btn.btn-primary(onclick="deletePublication('" + p._id + "')") Delete

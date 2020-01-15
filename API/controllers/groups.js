@@ -19,8 +19,10 @@ module.exports.findByName = name => {
 }
 
 module.exports.insert = g => {
+    console.log('Mongo:');
+    console.log(g);
     var newGroup = new Group(g);
-    return newGroup.save();
+    return newGroup.save()
 }
 
 module.exports.remove = id => {
