@@ -1,18 +1,21 @@
 var Publication = require('../models/publications');
 
 module.exports.find = () => {
+    console.log('MONGO: find()');
     return Publication
         .find()
         .exec()
 }
 
 module.exports.findOne = id => {
+    console.log('MONGO: findOne(' + id + ')');
     return Publication
         .findOne({_id: id})
         .exec()
 }
 
 module.exports.sortByDate = () => {
+    console.log('MONGO: sortByDate()');
     return Publication
         .find()
         .sort({date: -1})
@@ -20,11 +23,13 @@ module.exports.sortByDate = () => {
 }
 
 module.exports.insert = p => {
+    console.log('MONGO: insert(' + p + ')');
     var newPublication = new Publication(p);
     return newPublication.save();
 }
 
 module.exports.remove = id => {
+    console.log('MONGO: remove(' + id + ')');
     return Publication
         .deleteOne({_id: id})
         .exec()

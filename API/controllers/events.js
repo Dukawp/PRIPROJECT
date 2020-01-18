@@ -1,24 +1,28 @@
 var Event = require('../models/events');
 
 module.exports.find = () => {
+    console.log('MONGO: find()');
     return Event
         .find()
         .exec()
 }
 
 module.exports.findOne = id => {
+    console.log('MONGO: findOne(' + id + ')');
     return Event
         .findOne({_id: id})
         .exec()
 }
 
 module.exports.findByName = name => {
+    console.log('MONGO: findName(' + name + ')');
     return Event
         .find({name: {$regex: '.*' + name + '.*'}})
         .exec()
 }
 
 module.exports.sortByStartDate = () => {
+    console.log('MONGO: sortByStartDate()');
     return Event
         .find()
         .sort({startDate: 1})
@@ -26,6 +30,7 @@ module.exports.sortByStartDate = () => {
 }
 
 module.exports.sortByEndDate = () => {
+    console.log('MONGO: sortByEndDate()');
     return Event
         .find()
         .sort({endDate: 1})
@@ -33,11 +38,13 @@ module.exports.sortByEndDate = () => {
 }
 
 module.exports.insert = e => {
+    console.log('MONGO: insert(' + e + ')');
     var newEvent = new Event(e);
-    return newEvent.save();
+    return newEvent.save()
 }
 
 module.exports.remove = id => {
+    console.log('MONGO: remove(' + id + ')');
     return Event
         .deleteOne({_id: id})
         .exec()

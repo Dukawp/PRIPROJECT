@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .main.container
+       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
+       h1 Admin Events
+        table(border="1")
+          tr
+            th ID
+            th Name
+            th Description
+            th Start Date
+            th End Date
+            th Control
+            each e in events
+              tr
+                td= e._id
+                td= e.name
+                td= e.description
+                td= e.startDate
+                td= e.endDate
+                td
+                  button.btn.btn-primary(onclick="deleteEvent('" + e._id + "')") Delete

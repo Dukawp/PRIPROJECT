@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .main.container
+       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
+       h1 Admin Groups
+        table(border="1")
+          tr
+            th ID
+            th Name
+            th Description
+            th Control
+            each g in groups
+              tr
+                td= g._id
+                td= g.name
+                td= g.description
+                td
+                  button.btn.btn-primary(onclick="deleteGroup('" + g._id + "')") Delete

@@ -6,9 +6,10 @@ block content
     button.btn.btn-primary(onclick="window.location.href = '/feed/newPublication'") Create New Publication
     h1 Feed
     each p in feed
-      h3= p.title
+      h2= p.title
+      h3= p.date
       div= p.text
-      h3 Author:
+      h2 Author:
       div= p.author
       each c in p.comments
         h3 Comment:

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .main.container
+       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
+       h1 Admin Users
+        table(border="1")
+          tr
+            th ID
+            th Name
+            th Number
+            th Email
+            th Groups
+            th Events
+            th Control
+            each u in users
+              tr
+                td= u._id
+                td= u.name
+                td= u.number
+                td= u.email
+                td= u.groups
+                td= u.events
+                td
+                  button.btn.btn-primary(onclick="deleteUser('" + u._id + "')") Delete

@@ -9,6 +9,7 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
                 a.nav-item.nav-link(href='/feed') Feed  
                 a.nav-item.nav-link(href='/groups') Groups  
                 a.nav-item.nav-link(href='/events') Events  
+                a.nav-item.nav-link(href='/users') Users
                 a.nav-item.nav-link(href='/team') Team
                 a.nav-item.nav-link(href='/about') About
                 div(class="container")
@@ -16,9 +17,13 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
                         a.btn.btn-light.pull-md-right(style="padding: 3px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown")
                             img.avatar.img-circle.hidden-xs-down(style="max-width:30px; max-height:30px;" src="https://i.imgur.com/uYq21Ou.png")
                         ul(class="dropdown-menu")
-                            a(class="dropdown-item" href='/posts/newpost') New Post
-                            a(class="dropdown-item" href="/profile") My Profile
-                            a(class="dropdown-item" href="/posts/myposts") My Posts
+                            a(class="dropdown-item" href='/feed/newPublication') New Publication
+                            a(class="dropdown-item" href='/feed/newGroup') New Group
+                            a(class="dropdown-item" href='/feed/newEvent') New Event
+                            .dropdown-divider
+                            a(class="dropdown-item" href="/users/myProfile") My Profile
+                            a(class="dropdown-item" href="/users/editProfile") Edit Profile
+                            a(class="dropdown-item" href="/posts/myPublications") My Posts
                         if currentUser
                             a.nav-item.nav-link.btn.btn-logout.pull-md-right(href='/auth/logout') Logout
                         else
@@ -26,7 +31,6 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
             div(class='container h-100')        
                     div(class='d-flex justify-content-center h-100')
                         div(class='searchbar')
-                            input.nav-item(class='search_input' type='text' name='' placeholder='Search...')
-                            a.nav-item(href='#' class='search_icon')
-                                i(class='fas fa-search')
-                
+                            input.nav-item(class='search_input' type='text' name='' placeholder='Search')
+                            a.nav-item(href='?' class='search_icon')
+                                i(class='fas fa-search' name='search')

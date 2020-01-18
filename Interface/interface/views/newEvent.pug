@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .main.container
+  .main
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 New Event
@@ -12,37 +12,48 @@ block content
             div.form-group
                 label(for='text' class='cols-sm-2 control-label') Description:
                     textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
-            h2 Start Date
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Year:
-                    input(type='number' min='2020' class='form-control' name='startYear' id='startYear')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Month:
-                    input(type='number' min='1' max='12' class='form-control' name='startMonth' id='startMonth')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Day:
-                    input(type='number' min='1' max='31' class='form-control' name='startDay' id='startDay')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Hours:
-                    input(type='number' min='0' max='24' class='form-control' name='startHours' id='startHours')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Minutes:
-                    input(type='number' min='0' max='59' class='form-control' name='startMinutes' id='startMinutes')
-            h2 End Date
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Year:
-                    input(type='number' min='2020' class='form-control' name='endYear' id='endYear')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Month:
-                    input(type='number' min='1' max='12' class='form-control' name='endMonth' id='endMonth')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Day:
-                    input(type='number' min='1' max='31' class='form-control' name='endDay' id='endDay')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Hours:
-                    input(type='number' min='0' max='24' class='form-control' name='endHours' id='endHours')
-            div.form-group
-                label(for='text' class='cols-sm-2 control-label') Minutes:
-                    input(type='number' min='0' max='59' class='form-control' name='endMinutes' id='endMinutes')
+            h3 Start Date
+            div
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Year:
+                        input(type='number' min='2020' class='form-control' name='startYear' id='startYear')
+                b /
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Month:
+                        input(type='number' min='1' max='12' class='form-control' name='startMonth' id='startMonth')
+                b /
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Day:
+                        input(type='number' min='1' max='31' class='form-control' name='startDay' id='startDay')
+                b    
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Hours:
+                        input(type='number' min='0' max='24' class='form-control' name='startHours' id='startHours')
+                b :
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Minutes:
+                        input(type='number' min='0' max='59' class='form-control' name='startMinutes' id='startMinutes')
+            h3 End Date
+            div
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Year:
+                        input(type='number' min='2020' class='form-control' name='endYear' id='endYear')
+                b /
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Month:
+                        input(type='number' min='1' max='12' class='form-control' name='endMonth' id='endMonth')
+                b /
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Day:
+                        input(type='number' min='1' max='31' class='form-control' name='endDay' id='endDay')
+                b    
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Hours:
+                        input(type='number' min='0' max='24' class='form-control' name='endHours' id='endHours')
+                b :
+                form-group
+                    label(for='text' class='cols-sm-2 control-label') Minutes:
+                        input(type='number' min='0' max='59' class='form-control' name='endMinutes' id='endMinutes')
+            br
             div.form-group
                 button.btn.btn-primary(type='submit' style='width:100%;') Send
