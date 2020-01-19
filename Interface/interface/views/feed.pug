@@ -2,8 +2,6 @@ extends layout
 
 block content
   .main.container
-    button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
-    button.btn.btn-primary(onclick="window.location.href = '/feed/newPublication'") Create New Publication
     h1 Feed
     each p in feed
       h2= p.title

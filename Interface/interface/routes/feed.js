@@ -4,7 +4,6 @@ var axios = require('axios');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
-var sleep = require('sleep');
 
 // GET feed
 router.get('/', verifyAuthetication, function(req, res) {
@@ -18,8 +17,9 @@ router.get('/', verifyAuthetication, function(req, res) {
     else{
 
         console.log('INTERFACE: get feed');
+        var user = 1;
         axios.get('http://localhost:5012/publications/')
-            .then(data => res.render('feed', {feed: data.data}))
+            .then(data => res.render('feed', {feed: data.data, user}))
             .catch(error => res.render('error', {error: error}))
 
     }
