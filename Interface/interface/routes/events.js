@@ -54,7 +54,7 @@ router.post('/newEvent', verifyAuthetication, function(req, res) {
         endDate: req.body.endYear + '/' + req.body.endMonth + '/' + req.body.endDay + ' ' + req.body.endHours + ':' + req.body.endMinutes
 
     })
-      .then(data => res.redirect('../feed'))
+      .then(data => res.redirect('../events'))
       .catch(error => res.render('error', {error: error}))
 });
 
