@@ -222,7 +222,7 @@ body {
 
 	.searchbar:hover > .search_input{
 	padding: 0 0px;
-	width: 200px;
+	width: 100px;
 	caret-color:white;
 	transition: width 0.4s linear;
 	}

@@ -3,18 +3,21 @@ extends layout
 block content
   .main.container
        h1 Events
-        table(border="1")
+        br
+        br
+        table.table(style="background-color:rgba(0,0,0, .25)")
           tr
-            th Name
-            th Description
-            th Start Date
-            th End Date
-            th Options
+            th(style="color:white") Name
+            th(style="color:white") Description
+            th(style="color:white") Start Date
+            th(style="color:white") End Date
+            th(style="color:white") Options
             each e in events
               tr
-                td= e.name
-                td= e.description
-                td= e.startDate
-                td= e.endDate
+                td(style="color:white")= e.name
+                td(style="color:white")= e.description
+                td(style="color:white")= e.startDate
+                td(style="color:white")= e.endDate
                 td
-                  button.btn.btn-primary(onclick="joinEvent('" + e._id + "')") Join
+                  button.btn.btn-login(onclick="joinEvent('" + e._id + "')", style="margin-left: 5px") Join
+                  button.btn.btn-logout(onclick="exitEvent('" + e._id + "')", style="margin-left: 5px") Exit
