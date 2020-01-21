@@ -1701,7 +1701,7 @@ input[type='file'] {
 
 	.searchbar:hover > .search_input{
 	padding: 0 0px;
-	width: 100px;
+	width: 90px;
 	caret-color:white;
 	transition: width 0.4s linear;
 	}
