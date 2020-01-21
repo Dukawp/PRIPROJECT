@@ -7,21 +7,27 @@ var bcrypt = require('bcryptjs');
 // GET home page
 router.get('/', function(req, res, next) {
 
-  res.render('index');
+  if(req.isAuthenticated())
+    var user = 1;
+  res.render('index', {user});
 
 });
 
 // GET team page
 router.get('/team', function(req, res) {
 
-  res.render('team');
+  if(req.isAuthenticated())
+    var user = 1;
+  res.render('team', {user});
 
 });
 
 // GET about page
 router.get('/about', function(req, res) {
 
-  res.render('about');
+  if(req.isAuthenticated())
+    var user = 1;
+  res.render('about', {user});
   
 });
 

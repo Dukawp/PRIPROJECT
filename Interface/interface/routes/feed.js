@@ -8,6 +8,7 @@ var bcrypt = require('bcryptjs');
 // GET feed
 router.get('/', verifyAuthetication, function(req, res) {
 
+    var user = 1;
     if(req.session.passport.user == "admin"){
 
         console.log('INTERFACE: admin permissions granted');
@@ -17,7 +18,6 @@ router.get('/', verifyAuthetication, function(req, res) {
     else{
 
         console.log('INTERFACE: get feed');
-        var user = 1;
         axios.get('http://localhost:5012/publications/')
             .then(data => res.render('feed', {feed: data.data, user}))
             .catch(error => res.render('error', {error: error}))
@@ -28,17 +28,19 @@ router.get('/', verifyAuthetication, function(req, res) {
 // GET new publication page
 router.get('/newPublication', verifyAuthetication, function(req, res) {
 
-  res.render('newPublication');
+  var user = 1;
+  res.render('newPublication', {user});
 
 });
 
 // GET publication by ID
 router.get('/:id', verifyAuthetication, function(req, res) {
 
+  var user = 1;
   var id = req.params.id;
   console.log('INTERFACE: get publication by ID. ID: ' + id);
   axios.get('http://localhost:5012/publications/' + id)
-      .then(data => res.render('publication', {publication: data.data}))
+      .then(data => res.render('publication', {publication: data.data, user}))
       .catch(error => res.render('error', {error: error}))
 
 });

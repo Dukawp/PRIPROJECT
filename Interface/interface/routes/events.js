@@ -8,6 +8,7 @@ var bcrypt = require('bcryptjs');
 // GET all events
 router.get('/', verifyAuthetication, function(req, res) {
 
+    var user = 1;
     if(req.session.passport.user == "admin"){
 
         console.log('INTERFACE: admin permissions granted');
@@ -18,7 +19,7 @@ router.get('/', verifyAuthetication, function(req, res) {
 
         console.log('INTERFACE: get all events');
         axios.get('http://localhost:5012/events/')
-            .then(data => res.render('events', {events: data.data}))
+            .then(data => res.render('events', {events: data.data, user}))
             .catch(error => res.render('error', {error: error}))
 
     }
@@ -27,17 +28,19 @@ router.get('/', verifyAuthetication, function(req, res) {
 // GET new event page
 router.get('/newEvent', verifyAuthetication, function(req, res) {
 
-    res.render('newEvent');
+    var user = 1;
+    res.render('newEvent', {user});
   
 });
 
 // GET event by ID
 router.get('/:id', verifyAuthetication, function(req, res) {
 
+    var user = 1;
     var id = req.params.id;
     console.log('INTERFACE: get event by ID. ID: ' + id);
     axios.get('http://localhost:5012/events/' + id)
-        .then(data => res.render('event', {event: data.data}))
+        .then(data => res.render('event', {event: data.data, user}))
         .catch(error => res.render('error', {error: error}))
   
 });
