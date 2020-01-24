@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 
   //GET all publications
   console.log('API: get all publications');
-  Publications.find()
+  Publications.sortByDate()
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
 

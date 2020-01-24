@@ -1,61 +1,140 @@
 extends layout
 
 block content
+  .w3-modal
+    div(class="modal" id="formPub" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true")
+      div(class="modal-dialog modal-dialog-centered" )
+        div(class="modal-content")
+          div(class="modal-header")
+            h5 New Publication
+            div(class="modal-body")
+              form(action='/feed/newPublication' method='POST')
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Title:
+                  input(type='text' class='form-control' name='title' id='title')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Text:
+                  textarea(rows="4" cols="50" class='form-control' name='text' id='text')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Tags:
+                  input(type='text' class='form-control' name='tags' id='tags')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
+                  input(type='text' class='form-control' name='target' id='target')
+                div.form-group  
+                  label(for='text' class='cols-sm-2 control-label') File:
+                  input(type='file' class='form-control' name='file' id='file')
+                  button.btn.btn-primary(id='add') +1
+                div.form-group
+                  button.btn.btn-primary(type='submit' style='width:100%;' id="dismissSend") Send
+              div(class="modal-footer")
+                button.btn.btn-primary(type="button" id="dismiss") Close
+
+  .w3-modal
+    div(class="modal" id="formEvent" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true")
+      div(class="modal-dialog modal-dialog-centered" )
+        div(class="modal-content")
+          div(class="modal-header")
+            h5 New Event
+            div(class="modal-body")
+              form(action='/events/newEvent' method='POST')
+                div.form-group
+                    label(for='text' class='cols-sm-2 control-label') Name:
+                        input(type='text' class='form-control' name='name' id='name')  
+                div.form-group
+                    label(for='text' class='cols-sm-2 control-label') Description:
+                        textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
+                h3 Start Date
+                div
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Year:
+                            input(type='number' min='2020' class='form-control' name='startYear' id='startYear')
+                    b /
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Month:
+                            input(type='number' min='1' max='12' class='form-control' name='startMonth' id='startMonth')
+                    b /
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Day:
+                            input(type='number' min='1' max='31' class='form-control' name='startDay' id='startDay')
+                    b    
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Hours:
+                            input(type='number' min='0' max='24' class='form-control' name='startHours' id='startHours')
+                    b :
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Minutes:
+                            input(type='number' min='0' max='59' class='form-control' name='startMinutes' id='startMinutes')
+                h3 End Date
+                div
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Year:
+                            input(type='number' min='2020' class='form-control' name='endYear' id='endYear')
+                    b /
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Month:
+                            input(type='number' min='1' max='12' class='form-control' name='endMonth' id='endMonth')
+                    b /
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Day:
+                            input(type='number' min='1' max='31' class='form-control' name='endDay' id='endDay')
+                    b    
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Hours:
+                            input(type='number' min='0' max='24' class='form-control' name='endHours' id='endHours')
+                    b :
+                    form-group
+                        label(for='text' class='cols-sm-2 control-label') Minutes:
+                            input(type='number' min='0' max='59' class='form-control' name='endMinutes' id='endMinutes')
+                br
+                div.form-group
+                button.btn.btn-primary(type='submit' style='width:100%;' id="dismissEventSend") Send
+              div(class="modal-footer")
+                button.btn.btn-primary(type="button" id="dismissEvent") Close
+
+
   .container-fluid.gedf-wrapper
     .row
       //perfil
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
-            h4.card-title Diego Porto
+            h4.card-title=user
           ul.list-group.list-group-flush
+            li.list-group-item=user.number
             li.list-group-item Mestrado em Engenharia Informática
-            li.list-group-item pg37149@alunos.uminho.pt
           .card-block
             a.card-link(href='#') Editar Perfil
       //publicação      
       .col-md-6.gedf-main
-        .card(style='margin-top: 1rem')
-          .card-header
-            ul.nav.nav-pills.card-header-pills
-              li.nav-item
-                button.btn.btn-primary(type='submit') Registar Publicação
-              li.nav-item
-                button.btn.btn-primary(type='submit') Registar Evento
+        
         //feed
+        
         .card(style='margin-top: 2rem')
+        each p in feed
           .card-header
             .row
               .col-md-1
                 img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
               .col-md-6
-                .h5 Manoel Pereira
-                .h7.text-muted(style='font-size: 0.8rem') @a12345
+                .h5=p.author
+                .h7.text-muted(style='font-size: 0.8rem')=p.author
           .card-block
             .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o
-              | 23-01-2020
-            h5.card-title(style='color:#417aba') Exame de recurso
-            p.card-text
-              | Caros alunos, o exame de recurso será dia 27 de Janeiro das 9h às 12h. Preciso que aqueles que têm intenção de aparecer me avisem por email para saber que sala vou reservar. 
-        .card(style='margin-top: 2rem')
-          .card-header
-            .row
-              .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/bg.jpg')
-              .col-md-6
-                .h5 Carlos Alberto
-                .h7.text-muted(style='font-size: 0.8rem') @pg35483
-          .card-block
-            .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o
-              | 23-01-2020
-            h5.card-title(style='color:#417aba') Notas teste
-            p.card-text
-              | Caros alunos, os resultados do teste já estão disponíveis. Não estão famosos...
+              i.fa.fa-clock-o=p.date
+              |
+            h5.card-title(style='color:#417aba')=p.title
+            p.card-text=p.text
+              | 
       //grupos e eventos        
       .col-md-3
         .card(style='margin-top: 1rem')
+          .card-block
+              h4 Create
+        .list-group
+          button.list-group-item.list-group-item-action(type='button' id="seePub") Publication
+          button.list-group-item.list-group-item-action(type='button' id="seeEvent") Event
+        .card(style='margin-top: 1rem')  
           .card-block
             h4 Grupos
         .list-group
