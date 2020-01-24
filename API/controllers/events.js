@@ -21,6 +21,13 @@ module.exports.findByName = name => {
         .exec()
 }
 
+module.exports.getName = id => {
+    console.log('MONGO: getName(' + id + ')');
+    return Event
+        .findOne({_id: id}, {_id: 0, name: 1})
+        .exec()
+}
+
 module.exports.sortByStartDate = () => {
     console.log('MONGO: sortByStartDate()');
     return Event

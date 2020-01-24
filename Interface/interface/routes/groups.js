@@ -59,6 +59,38 @@ router.post('/newGroup', verifyAuthetication, function(req, res) {
       .catch(error => res.render('error', {error: error}))
 });
 
+// POST user joins group
+router.post('/join/:id', verifyAuthetication, function(req, res) {
+
+    var id = req.params.id;
+    var number;
+    console.log('INTERFACE: post user joins group. ID: ' + id);
+    axios.post('htpp://localhost:5012/groups/join/' + id, {
+
+        number: req.session.passport.user
+
+    })
+        .then(res.redirect('/feed'))
+        .catch(error => res.render('error', {error: error}))
+
+});
+
+// POST user exits group
+router.post('/exit/:id', verifyAuthetication, function(req, res) {
+
+    var id = req.params.id;
+    console.log('INTERFACE: ' + req.session.passport.user);
+    console.log('INTERFACE: post user exits group. ID: ' + id);
+    axios.post('http://localhost:5012/groups/exit/' + id, {
+
+        number: req.session.passport.user
+  
+    })
+        .then(res.redirect('/feed'))
+        .catch(error => res.render('error', {error: error}))
+
+});
+
 // Verify authentication
 function verifyAuthetication(req, res, next){
 

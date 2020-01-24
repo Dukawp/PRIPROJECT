@@ -39,6 +39,30 @@ module.exports.editPassword = (number, newPassword) => {
         .updateOne({number: number}, {password: newPassword})
 }
 
+module.exports.joinGroup = (number, name) => {
+    console.log('MONGO: joinGroup(' + name + ')');
+    return User
+        .updateOne({number: number}, {$push: {groups: name}})
+}
+
+module.exports.exitGroup = (number, name) => {
+    console.log('MONGO: exitGroup(' + name + ')');
+    return User
+        .updateOne({number: number}, {$pull: {groups: name}})
+}
+
+module.exports.joinEvent = (number, name) => {
+    console.log('MONGO: joinEvent(' + name + ')');
+    return User
+        .updateOne({number: number}, {$push: {events: name}})
+}
+
+module.exports.exitEvent = (number, name) => {
+    console.log('MONGO: exitEvent(' + name + ')');
+    return User
+        .updateOne({number: number}, {$pull: {events: name}})
+}
+
 module.exports.remove = id => {
     console.log('MONGO: remove(' + id + ')');
     return User

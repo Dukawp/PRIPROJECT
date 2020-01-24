@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Groups = require('../controllers/groups');
+var Users = require('../controllers/users');
 
 router.get('/', function(req, res) {
 
@@ -32,7 +33,7 @@ router.get('/:id', function(req, res) {
 
   var id = req.params.id;
   console.log('API: get one group by ID. ID: ' + id);
-  Groups.findOne(d)
+  Groups.findOne(id)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
   
@@ -48,6 +49,46 @@ router.post('/', function(req, res){
 
 });
 
+// POST user joins group
+router.post('/join/:id', function(req, res) {
+
+  var id = req.params.id;
+  var number = req.body.number;
+  console.log('API: post user joins group. User number: ' + number + '. Group ID: ' + id);
+
+  Groups.getName(id)
+    .then(data => {
+
+      console.log('API: group name: ' + data.name);
+      Users.joinGroup(number, data.name)
+        .then(data => res.jsonp(data))
+        .catch(error => res.status(500).jsonp(error));
+
+    })
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST user exits group
+router.post('/exit/:id', function(req, res) {
+
+  var id = req.params.id;
+  var number = req.body.number;
+  console.log('API: delete user exits group. User number: ' + number + '. Group ID: ' + id);
+
+  Groups.getName(id)
+    .then(data => {
+
+      console.log('API: group name: ' + data.name);
+      Users.exitGroup(number, data.name)
+        .then(data => res.jsonp(data))
+        .catch(error => res.status(500).jsonp(error));
+
+    })
+    .catch(error => res.status(500).jsonp(error))
+
+});
+
 // DELETE group
 router.delete('/:id', function(req, res){
 
@@ -55,7 +96,7 @@ router.delete('/:id', function(req, res){
   console.log('API: delete group. ID: ' + id);
   Groups.remove(id)
     .then(data => res.jsonp(data))
-    .catch(error => res.status(500).jsonp(error))
+    .catch(error => res.status(500).jsonp(error));
 
 });
 
