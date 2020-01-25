@@ -7,36 +7,15 @@ block content
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
-            h4.card-title=user
+            h4.card-title=profile.name
           ul.list-group.list-group-flush
-            li.list-group-item=user.email
-            li.list-group-item Mestrado em Engenharia Informática
+            li.list-group-item=profile.number
+            li.list-group-item=profile.email
           .card-block
             a.card-link(href='#') Editar Perfil
-      //publicação      
-      .col-md-6.gedf-main
-        
-      
-        //feed
-        
-        .card(style='margin-top: 2rem')
-        each p in feed
-          .card-header
-            .row
-              .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-              .col-md-6
-                .h5=p.author
-                .h7.text-muted(style='font-size: 0.8rem')=p.author
-          .card-block
-            .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o=p.date
-              |
-            h5.card-title(style='color:#417aba')=p.title
-            p.card-text=p.text
-              | 
+    
       //grupos e eventos        
-      .col-md-3
+      .col-md-9
         .card(style='margin-top: 1rem')
           .card-block
               h4 Create
@@ -48,12 +27,12 @@ block content
           .card-block
             h4 Grupos
         .list-group
-          //each g in user.groups
+          each g in profile.groups
             button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 Eventos
         .list-group
-          //each e in user.events
+          each e in profile.events
             button.list-group-item.list-group-item-action(type='button') 
             
