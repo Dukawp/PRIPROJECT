@@ -124,7 +124,7 @@ block content
             li.list-group-item=userI.number
             li.list-group-item Mestrado em Engenharia Informática
           .card-block
-            a.card-link(href='#') Editar Perfil
+            a.card-link(href='/profile') Profile
       //publicação      
       .col-md-6.gedf-main
         
@@ -160,12 +160,12 @@ block content
           .card-block
             h4 Grupos
         .list-group
-          //each g in user.groups
+          each g in userI.groups
             button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 Eventos
         .list-group
-          //each e in user.events
+          each e in userI.events
             button.list-group-item.list-group-item-action(type='button') 
             

@@ -1,6 +1,26 @@
 extends layout
 
 block content
+
+  <!-- The Modal Group -->
+  div(class="modal" id="editProfile")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") Edit Profile
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+
+
   .container-fluid.gedf-wrapper
     .row
       //perfil
@@ -12,7 +32,8 @@ block content
             li.list-group-item=profile.number
             li.list-group-item=profile.email
           .card-block
-            a.card-link(href='#') Editar Perfil
+            button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#editProfile") Edit profile
+
     
       //grupos e eventos        
       .col-md-9
