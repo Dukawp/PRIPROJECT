@@ -27,19 +27,18 @@ passport.use(new LocalStrategy(
       issuer: "PRI Server"
     })
 
-    console.log("APP: Passport use!");
+    console.log("INTERFACE: Passport use!");
     axios.get('http://localhost:5012/users/' + number + '?token=' + token)
       .then(dados => {
 
         const user = dados.data;
         if(!user){
-          console.log("APP: User not found!");
+          console.log("User not found!");
           return done(null, false, {message: 'User not found!\n'});
         }
         if(!bcrypt.compareSync(password, user.password)){
           //console.log(password);
           //console.log(user.password);
-          console.log('APP: Wrong password!');
           return done(null, false, {message: 'Wrong password!\n'});
         }
         return done(null, user);
@@ -51,7 +50,7 @@ passport.use(new LocalStrategy(
 // Tell passport how to serialize a user
 passport.serializeUser((user, done) => {
 
-  console.log('APP: Going to serialize user ' + JSON.stringify(user));
+  //console.log('Going to serialize user ' + JSON.stringify(user));
   //User serialization. Passport saves in-session user here
   done(null, user.number);
 
@@ -66,7 +65,7 @@ passport.deserializeUser((number, done) => {
     issuer: "PRI Server"
   })
 
-  console.log('APP: Going to deserialize user ' + number);
+  //console.log('Going to deserialize user ' + number);
   axios.get('http://localhost:5012/users/' + number + '?token=' + token)
     .then(dados => done(null, dados.data))
     .catch(error => done(error, false))

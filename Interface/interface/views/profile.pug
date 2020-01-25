@@ -4,60 +4,56 @@ block content
   .container-fluid.gedf-wrapper
     .row
       //perfil
-      .col-md-3 
+      .col-md-3
         .card(style='margin-top: 1rem')
-          img.img-thumbnail(src='../images/teste.jpg')
           .card-block
-            h4.card-title Diego Porto
-            p.card-text
-              | Isso aqui dá muito trabalho pra fazer xD
+            h4.card-title=user
           ul.list-group.list-group-flush
+            li.list-group-item=user.email
             li.list-group-item Mestrado em Engenharia Informática
-            li.list-group-item pg37149@alunos.uminho.pt
-      //feed      
+          .card-block
+            a.card-link(href='#') Editar Perfil
+      //publicação      
       .col-md-6.gedf-main
+        
+      
+        //feed
+        
         .card(style='margin-top: 2rem')
+        each p in feed
           .card-header
             .row
               .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/teste.jpg')
+                img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
               .col-md-6
-                .h5 Diego Porto
-                .h7.text-muted(style='font-size: 0.8rem') @pg37149
+                .h5=p.author
+                .h7.text-muted(style='font-size: 0.8rem')=p.author
           .card-block
             .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o
-              | 23-01-2020
-            h5.card-title(style='color:#417aba') Exame de recurso
-            p.card-text
-              | Caros alunos, o exame de recurso será dia 27 de Janeiro das 9h às 12h. Preciso que aqueles que têm intenção de aparecer me avisem por email para saber que sala vou reservar. 
-        .card(style='margin-top: 2rem')
-          .card-header
-            .row
-              .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/teste.jpg')
-              .col-md-6
-                .h5 Diego Porto
-                .h7.text-muted(style='font-size: 0.8rem') @pg37149
-          .card-block
-            .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o
-              | 23-01-2020
-            h5.card-title(style='color:#417aba') Notas teste
-            p.card-text
-              | Caros alunos, os resultados do teste já estão disponíveis. Não estão famosos...
+              i.fa.fa-clock-o=p.date
+              |
+            h5.card-title(style='color:#417aba')=p.title
+            p.card-text=p.text
+              | 
       //grupos e eventos        
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
+              h4 Create
+        .list-group
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newPub") Publication
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newGroup") Group
+        .card(style='margin-top: 1rem')  
+          .card-block
             h4 Grupos
         .list-group
-          button.list-group-item.list-group-item-action(type='button') PRI 19/20
-          button.list-group-item.list-group-item-action(type='button') Mineração de Dados
-          button.list-group-item.list-group-item-action(type='button') GCS 19/20
-          button.list-group-item.list-group-item-action(type='button') Base de Dados noSQL
+          //each g in user.groups
+            button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 Eventos
         .list-group
-          button.list-group-item.list-group-item-action(type='button') Exame de recurso PRI
+          //each e in user.events
+            button.list-group-item.list-group-item-action(type='button') 
+            

@@ -1,14 +1,22 @@
 extends layout
 
 block content
-  .w3-modal
-    div(class="modal" id="formPub" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true")
-      div(class="modal-dialog modal-dialog-centered" )
-        div(class="modal-content")
-          div(class="modal-header")
-            h5 New Publication
-            div(class="modal-body")
-              form(action='/feed/newPublication' method='POST')
+
+
+
+  <!-- The Modal Pub -->
+  div(class="modal" id="newPub")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Publication
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/feed/newPublication' method='POST')
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Title:
                   input(type='text' class='form-control' name='title' id='title')  
@@ -26,18 +34,24 @@ block content
                   input(type='file' class='form-control' name='file' id='file')
                   button.btn.btn-primary(id='add') +1
                 div.form-group
-                  button.btn.btn-primary(type='submit' style='width:100%;' id="dismissSend") Send
-              div(class="modal-footer")
-                button.btn.btn-primary(type="button" id="dismiss") Close
-
-  .w3-modal
-    div(class="modal" id="formEvent" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true")
-      div(class="modal-dialog modal-dialog-centered" )
-        div(class="modal-content")
-          div(class="modal-header")
-            h5 New Event
-            div(class="modal-body")
-              form(action='/events/newEvent' method='POST')
+                  button.btn.btn-primary(type='submit' style='width:100%;' ) Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+        
+  <!-- The Modal Event -->
+  div(class="modal" id="newEvent")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Event
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/events/newEvent' method='POST')
                 div.form-group
                     label(for='text' class='cols-sm-2 control-label') Name:
                         input(type='text' class='form-control' name='name' id='name')  
@@ -45,53 +59,59 @@ block content
                     label(for='text' class='cols-sm-2 control-label') Description:
                         textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
                 h3 Start Date
-                div
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Year:
-                            input(type='number' min='2020' class='form-control' name='startYear' id='startYear')
-                    b /
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Month:
-                            input(type='number' min='1' max='12' class='form-control' name='startMonth' id='startMonth')
-                    b /
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Day:
-                            input(type='number' min='1' max='31' class='form-control' name='startDay' id='startDay')
-                    b    
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Hours:
-                            input(type='number' min='0' max='24' class='form-control' name='startHours' id='startHours')
-                    b :
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Minutes:
-                            input(type='number' min='0' max='59' class='form-control' name='startMinutes' id='startMinutes')
-                h3 End Date
-                div
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Year:
-                            input(type='number' min='2020' class='form-control' name='endYear' id='endYear')
-                    b /
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Month:
-                            input(type='number' min='1' max='12' class='form-control' name='endMonth' id='endMonth')
-                    b /
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Day:
-                            input(type='number' min='1' max='31' class='form-control' name='endDay' id='endDay')
-                    b    
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Hours:
-                            input(type='number' min='0' max='24' class='form-control' name='endHours' id='endHours')
-                    b :
-                    form-group
-                        label(for='text' class='cols-sm-2 control-label') Minutes:
-                            input(type='number' min='0' max='59' class='form-control' name='endMinutes' id='endMinutes')
-                br
-                div.form-group
-                button.btn.btn-primary(type='submit' style='width:100%;' id="dismissEventSend") Send
-              div(class="modal-footer")
-                button.btn.btn-primary(type="button" id="dismissEvent") Close
 
+                      <div class="container">
+                        <div class='col-md-5'>
+                            <div class="form-group">
+                              <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>
+                                    <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class='col-md-5'>
+                            <div class="form-group">
+                              <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>
+                                    <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+  
+  <!-- The Modal Group -->
+  div(class="modal" id="newGroup")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Group
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/groups/newGroup' method='POST')
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Name:
+                    input(type='text' class='form-control' name='name' id='name')  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Description:
+                    textarea(rows="4" cols="50" class='form-control' name='description' id='description')
+            div.form-group
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
 
   .container-fluid.gedf-wrapper
     .row
@@ -101,13 +121,14 @@ block content
           .card-block
             h4.card-title=user
           ul.list-group.list-group-flush
-            li.list-group-item=user.number
+            li.list-group-item=userInfo
             li.list-group-item Mestrado em Engenharia Informática
           .card-block
             a.card-link(href='#') Editar Perfil
       //publicação      
       .col-md-6.gedf-main
         
+      
         //feed
         
         .card(style='margin-top: 2rem')
@@ -132,18 +153,19 @@ block content
           .card-block
               h4 Create
         .list-group
-          button.list-group-item.list-group-item-action(type='button' id="seePub") Publication
-          button.list-group-item.list-group-item-action(type='button' id="seeEvent") Event
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newPub") Publication
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newGroup") Group
         .card(style='margin-top: 1rem')  
           .card-block
             h4 Grupos
         .list-group
-          button.list-group-item.list-group-item-action(type='button') PRI 19/20
-          button.list-group-item.list-group-item-action(type='button') Mineração de Dados
-          button.list-group-item.list-group-item-action(type='button') GCS 19/20
-          button.list-group-item.list-group-item-action(type='button') Base de Dados noSQL
+          //each g in user.groups
+            button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 Eventos
         .list-group
-          button.list-group-item.list-group-item-action(type='button') Exame de recurso PRI
+          //each e in user.events
+            button.list-group-item.list-group-item-action(type='button') 
+            
