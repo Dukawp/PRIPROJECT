@@ -23,7 +23,7 @@ router.get('/', verifyAuthetication, function(req, res) {
             .then(userInfo => {
 
               axios.get('http://localhost:5012/publications/')
-                .then(data => res.render('feed', {feed: data.data, user, userInfo}))
+                .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
                 .catch(error => res.render('error', {error: error}))
 
             })
