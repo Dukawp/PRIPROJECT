@@ -19,7 +19,7 @@ router.get('/', verifyAuthetication, function(req, res) {
 
         var userNumber = req.session.passport.user;
         console.log('INTERFACE: get feed');
-        axios.get('http://localhost:5012/users/' + userNumber)
+        axios.get('http://localhost:5012/users/' + userNumber + '/profile')
             .then(userInfo => {
 
               axios.get('http://localhost:5012/publications/')
