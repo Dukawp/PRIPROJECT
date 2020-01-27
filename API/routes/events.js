@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Events = require('../controllers/events');
+var Users = require('../controllers/users');
 
 router.get('/', function(req, res) {
 
@@ -44,6 +45,46 @@ router.post('/', function(req, res){
   Events.insert(req.body)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST user joins event
+router.post('/join/:id', function(req, res) {
+
+  var id = req.params.id;
+  var number = req.body.number;
+  console.log('API: post user joins event. User number: ' + number + '. Event ID: ' + id);
+
+  Events.getName(id)
+    .then(data => {
+
+      console.log('API: event name: ' + data.name);
+      Users.joinEvent(number, data.name)
+        .then(data => res.jsonp(data))
+        .catch(error => res.status(500).jsonp(error));
+
+    })
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST user exits event
+router.post('/exit/:id', function(req, res) {
+
+  var id = req.params.id;
+  var number = req.body.number;
+  console.log('API: delete user exits event. User number: ' + number + '. Event ID: ' + id);
+
+  Events.getName(id)
+    .then(data => {
+
+      console.log('API: event name: ' + data.name);
+      Users.exitEvent(number, data.name)
+        .then(data => res.jsonp(data))
+        .catch(error => res.status(500).jsonp(error));
+
+    })
+    .catch(error => res.status(500).jsonp(error))
 
 });
 

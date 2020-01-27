@@ -1,16 +1,171 @@
 extends layout
 
 block content
-  .main.container
-    h1 Feed
-    each p in feed
-      h2= p.title
-      h3= p.date
-      div= p.text
-      h2 Author:
-      div= p.author
-      each c in p.comments
-        h3 Comment:
-        div= c.commentAuthor 
-        div= c.commentText
-      h3 ------------------------------------------------------------
+
+
+
+  <!-- The Modal Pub -->
+  div(class="modal" id="newPub")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Publication
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/feed/newPublication' method='POST')
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Title:
+                  input(type='text' class='form-control' name='title' id='title')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Text:
+                  textarea(rows="4" cols="50" class='form-control' name='text' id='text')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Tags:
+                  input(type='text' class='form-control' name='tags' id='tags')  
+                div.form-group
+                  label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
+                  input(type='text' class='form-control' name='target' id='target')
+                div.form-group  
+                  label(for='text' class='cols-sm-2 control-label') File:
+                  input(type='file' class='form-control' name='file' id='file')
+                  button.btn.btn-primary(id='add') +1
+                div.form-group
+                  button.btn.btn-primary(type='submit' style='width:100%;' ) Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+        
+  <!-- The Modal Event -->
+  div(class="modal" id="newEvent")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Event
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/events/newEvent' method='POST')
+                div.form-group
+                    label(for='text' class='cols-sm-2 control-label') Name:
+                        input(type='text' class='form-control' name='name' id='name')  
+                div.form-group
+                    label(for='text' class='cols-sm-2 control-label') Description:
+                        textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
+                h3 Start Date
+
+                      <div class="container">
+                        <div class='col-md-5'>
+                            <div class="form-group">
+                              <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>
+                                    <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class='col-md-5'>
+                            <div class="form-group">
+                              <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>
+                                    <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+  
+  <!-- The Modal Group -->
+  div(class="modal" id="newGroup")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Group
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/groups/newGroup' method='POST')
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Name:
+                    input(type='text' class='form-control' name='name' id='name')  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Description:
+                    textarea(rows="4" cols="50" class='form-control' name='description' id='description')
+            div.form-group
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+
+  .container-fluid.gedf-wrapper
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title=userI.name
+          ul.list-group.list-group-flush
+            li.list-group-item=userI.number
+            li.list-group-item Mestrado em Engenharia Informática
+          .card-block
+            a.card-link(href='/profile') Profile
+      //publicação      
+      .col-md-6.gedf-main
+        
+      
+        //feed
+        
+        .card(style='margin-top: 2rem')
+        each p in feed
+          .card-header
+            .row
+              .col-md-1
+                img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+              .col-md-6
+                .h5=p.author
+                .h7.text-muted(style='font-size: 0.8rem')=p.author
+          .card-block
+            .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+              i.fa.fa-clock-o=p.date
+              |
+            h5.card-title(style='color:#417aba')=p.title
+            p.card-text=p.text
+              | 
+      //grupos e eventos        
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+              h4 Create
+        .list-group
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newPub") Publication
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
+          button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newGroup") Group
+        .card(style='margin-top: 1rem')  
+          .card-block
+            h4 Grupos
+        .list-group
+          each g in userI.groups
+            button.list-group-item.list-group-item-action(type='button')=g
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4 Eventos
+        .list-group
+          each e in userI.events
+            button.list-group-item.list-group-item-action(type='button') 
+            

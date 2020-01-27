@@ -1,5 +1,16 @@
 /* Base Styles */
 
+.container-fluid.gedf-wrapper {
+	background-color: #fff;
+	margin-top: 5rem;
+	height: 100%;
+}
+
+.img-thumbnail{
+	width: max-content;
+	height: 350px;
+}
+
 body {
 	background: #1d2a33 url('../images/wp1.jpg') no-repeat;
 	background-size: cover; 
@@ -1722,10 +1733,6 @@ input[type='file'] {
 	color:white;
 	text-decoration:none;
 	}
-
-
-
-
 
 
 

@@ -61,6 +61,36 @@ router.post('/newEvent', verifyAuthetication, function(req, res) {
       .catch(error => res.render('error', {error: error}))
 });
 
+// POST user joins event
+router.post('/join/:id', verifyAuthetication, function(req, res) {
+
+  var id = req.params.id;
+  console.log('INTERFACE: post user joins event. ID: ' + id);
+  axios.post('htpp://localhost:5012/events/join/' + id, {
+
+      number: req.session.passport.user
+
+  })
+      .then(res.redirect('/feed'))
+      .catch(error => res.render('error', {error: error}))
+
+});
+
+// POST user exits event
+router.post('/exit/:id', verifyAuthetication, function(req, res) {
+
+    var id = req.params.id;
+    console.log('INTERFACE: post user exits event. ID: ' + id);
+    axios.post('http://localhost:5012/events/exit/' + id, {
+
+        number: req.session.passport.user
+  
+    })
+        .then(res.redirect('/feed'))
+        .catch(error => res.render('error', {error: error}))
+
+});
+
 // Verify authentication
 function verifyAuthetication(req, res, next){
 

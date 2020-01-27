@@ -21,6 +21,13 @@ module.exports.findByName = name => {
         .exec()
 }
 
+module.exports.getName = id => {
+    console.log('MONGO: getName(' + id + ')');
+    return Group
+        .findOne({_id: id}, {_id: 0, name: 1})
+        .exec()
+}
+
 module.exports.insert = g => {
     console.log('MONGO: insert(' + g + ')');
     console.log(g);

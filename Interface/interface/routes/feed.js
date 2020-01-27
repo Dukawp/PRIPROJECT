@@ -17,11 +17,17 @@ router.get('/', verifyAuthetication, function(req, res) {
     }
     else{
 
+        var userNumber = req.session.passport.user;
         console.log('INTERFACE: get feed');
-        axios.get('http://localhost:5012/publications/')
-            .then(data => res.render('feed', {feed: data.data, user}))
-            .catch(error => res.render('error', {error: error}))
+        axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+            .then(userInfo => {
 
+              axios.get('http://localhost:5012/publications/')
+                .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
+                .catch(error => res.render('error', {error: error}))
+
+            })
+            .catch(error => res.render('error', {error: error}));
     }
 });
 

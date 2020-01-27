@@ -27,13 +27,13 @@ passport.use(new LocalStrategy(
       issuer: "PRI Server"
     })
 
-    console.log("INTERFACE: Passport use!");
+    console.log("APP: Passport use!");
     axios.get('http://localhost:5012/users/' + number + '?token=' + token)
       .then(dados => {
 
         const user = dados.data;
         if(!user){
-          console.log("User not found!");
+          console.log("APP: User not found!");
           return done(null, false, {message: 'User not found!\n'});
         }
         if(!bcrypt.compareSync(password, user.password)){
@@ -79,6 +79,7 @@ var feedRouter = require('./routes/feed');
 var groupsRouter = require('./routes/groups');
 var eventsRouter = require('./routes/events');
 var usersRouter = require('./routes/users');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -121,6 +122,7 @@ app.use('/feed', feedRouter);
 app.use('/groups', groupsRouter);
 app.use('/events', eventsRouter);
 app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
