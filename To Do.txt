@@ -1,6 +1,6 @@
 Ainda a fazer:
 
-1. Integrar o sistema com o ANTLR.
+1. Meter o ANTLR a funcionar com um ficheiro (atualmente, o utilizador escreve na propria interface).
 2. No feed, so mostrar as publicacoes que o utilizador pode ver.
 3. Insercao de ficheiros nas publicacoes.
 4. Editar o perfil.
