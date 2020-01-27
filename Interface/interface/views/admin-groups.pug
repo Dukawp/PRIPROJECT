@@ -1,19 +1,38 @@
 extends layout
 
 block content
-  .main.container
-       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
-       h1 Admin Groups
-        table(border="1")
-          tr
-            th ID
-            th Name
-            th Description
-            th Control
-            each g in groups
-              tr
-                td= g._id
-                td= g.name
-                td= g.description
-                td
-                  button.btn.btn-primary(onclick="deleteGroup('" + g._id + "')") Delete
+  .container-fluid.gedf-wrapper
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title Admin Interface
+          ul.list-group.list-group-flush
+            li.list-group-item Group List
+          ul.list-group.list-group-flush
+            li.list-group-item Mestrado em Engenharia Informática
+      //publicação      
+      .col-md-6.gedf-main
+
+        .card(style='margin-top: 2rem')
+        .card-header
+            .row
+              .col-md-3
+                .h5 Group List
+        .card-block
+          table.table(border="0")
+            tr
+              th Name
+              th Description
+              th
+              each g in groups
+                tr
+                  td
+                    h5.card-title(style='color:#417aba')=g.name
+                      | 
+                  td
+                      p.card-text=g.description
+                      | 
+                  td
+                    button.btn.btn-primary(onclick="deleteGroup('" + g._id + "')") Delete

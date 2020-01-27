@@ -1,23 +1,46 @@
 extends layout
 
 block content
-  .main.container
-       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
-       h1 Admin Events
-        table(border="1")
-          tr
-            th ID
-            th Name
-            th Description
-            th Start Date
-            th End Date
-            th Control
-            each e in events
-              tr
-                td= e._id
-                td= e.name
-                td= e.description
-                td= e.startDate
-                td= e.endDate
-                td
-                  button.btn.btn-primary(onclick="deleteEvent('" + e._id + "')") Delete
+  .container-fluid.gedf-wrapper
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title Admin Interface
+          ul.list-group.list-group-flush
+            li.list-group-item Event List
+          ul.list-group.list-group-flush
+            li.list-group-item Mestrado em Engenharia Informática
+      //publicação      
+      .col-md-6.gedf-main
+
+        .card(style='margin-top: 2rem')
+        .card-header
+            .row
+              .col-md-3
+                .h5 Event List
+        .card-block
+          table.table(border="0")
+            tr
+              th Name
+              th Description
+              th Start Date
+              th End Date
+              th
+              each e in events
+                tr
+                  td
+                    h5.card-title(style='color:#417aba')=e.name
+                      | 
+                  td
+                      p.card-text=e.description
+                      | 
+                  td
+                      p.card-text=e.startDate
+                      | 
+                  td
+                      p.card-text=e.endDate
+                      |     
+                  td
+                    button.btn.btn-primary(onclick="deleteEvent('" + e._id + "')") Delete

@@ -2,7 +2,6 @@ extends layout
 
 block content
   .main.container
-    button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
     h1 Users
     if users!=null
         each u in users

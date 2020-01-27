@@ -1,25 +1,46 @@
 extends layout
 
 block content
-  .main.container
-       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
-       h1 Admin Users
-        table(border="1")
-          tr
-            th ID
-            th Name
-            th Number
-            th Email
-            th Groups
-            th Events
-            th Control
-            each u in users
-              tr
-                td= u._id
-                td= u.name
-                td= u.number
-                td= u.email
-                td= u.groups
-                td= u.events
-                td
-                  button.btn.btn-primary(onclick="deleteUser('" + u._id + "')") Delete
+    .container-fluid.gedf-wrapper
+      .row
+        //perfil
+        .col-md-3
+          .card(style='margin-top: 1rem')
+            .card-block
+              h4.card-title Admin Interface
+            ul.list-group.list-group-flush
+              li.list-group-item User List
+            ul.list-group.list-group-flush
+              li.list-group-item Mestrado em Engenharia Informática
+        //publicação      
+        .col-md-6.gedf-main
+
+          card(style='margin-top: 2rem')
+          each u in users
+            .card-header
+              .row
+                .col-md-1
+                  img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                .col-md-6
+                  .h5=u.name
+                  .h7.text-muted(style='font-size: 0.8rem')=u.number
+            .card-block
+              table.table(border="0")
+                tr
+                  th Email
+                  th Groups
+                  th Events
+                  th
+                tr
+                  td
+                    p.card-text=u.email
+                      | 
+                  td
+                      p.card-text=u.groups
+                      |
+                  td
+                      p.card-text=u.events
+                      |
+                  td
+                    button.btn.btn-primary(onclick="deleteUser('" + u._id + "')") Delete
+

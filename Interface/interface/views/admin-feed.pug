@@ -9,6 +9,8 @@ block content
           .card-block
             h4.card-title Admin Feed
           ul.list-group.list-group-flush
+            li.list-group-item Publications List
+          ul.list-group.list-group-flush
             li.list-group-item Mestrado em Engenharia Informática
       //publicação      
       .col-md-6.gedf-main
@@ -51,37 +53,4 @@ block content
 
                   
                 
-            
-
-  .main.container
-       button.btn.btn-primary(onclick="window.location.href = '/auth/logout'") Logout
-       h1 Admin Feed
-        table(border="1")
-          tr
-            th ID
-            th Title
-            th Text
-            th Date
-            th File Path
-            th File Type
-            th Tags
-            th Target
-            th Author
-            th Comments
-            th Control
-            each p in feed
-              tr
-                td= p.filePath
-                td= p.fileMimetype
-                td= p.author
-                td
-                  table(border="1")
-                    tr
-                      th Author
-                      th Text
-                      each c in p.comments
-                        tr
-                          td= c.commentAuthor
-                          td= c.commentText
-                td
-                  button.btn.btn-primary(onclick="deletePublication('" + p._id + "')") Delete
+        
