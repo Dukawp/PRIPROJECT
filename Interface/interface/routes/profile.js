@@ -16,4 +16,14 @@ router.get('/', function(req, res) {
 
 });
 
+router.get('/:id', function(req, res) {
+
+    var user = 1;
+    var number = req.params.id;
+    axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => res.render('userProfile', {profile: data.data, user}))
+        .catch(error => res.render('error', {error: error}))
+
+});
+
 module.exports = router;

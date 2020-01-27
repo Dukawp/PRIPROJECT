@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  .container-fluid.gedf-wrapper
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title=profile.name
+          ul.list-group.list-group-flush
+            li.list-group-item=profile.number
+            li.list-group-item=profile.email
+
+      .col-md-6.gedf-main
+
+          card(style='margin-top: 2rem')
+            .card-header
+            
+            .card-block
+              table.table(border="0")
+                th
+                  h5 Events
+                th
+                  h5 Groups
+                tr  
+                  table.table(border="0")
+                    tr
+                      th Name
+                      th Description
+                      th
+                      each u in profile.events
+                        tr
+                          td
+                            p.card-text=u.name
+                              | 
+                          td
+                              p.card-text=u.description
+                              |
+                  tr  
+                  table.table(border="0")
+                    tr
+                      th Name
+                      th Description
+                      th
+                      each u in profile.groups
+                        tr
+                          td
+                            p.card-text=u.name
+                              | 
+                          td
+                              p.card-text=u.description
+                              |
+
+
+
+    
+      
+            

@@ -16,12 +16,30 @@ router.get('/', verifyAuthetication, function(req, res) {
 
     }
     else{
-
-        res.render('users', {user});
-
+        var userNumber = req.session.passport.user;
+        var user = 1;
+        console.log('INTERFACE: get all users');
+        axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+            .then(userInfo => {
+                axios.get('http://localhost:5012/users/')
+                .then(data => res.render('users', {users:data.data, user, userI: userInfo.data}))
+                .catch(error => res.render('error', {error: error}))
+            })
     }
 
 });
+
+
+router.get('/profile/:id', function(req, res) {
+
+    var user = 1;
+    var number = req.params.id;
+    axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => res.render('userProfile', {profile: data.data, user}))
+        .catch(error => res.render('error', {error: error}))
+
+});
+
 
 // GET user profile
 router.get('/myProfile', function(req, res) {
@@ -34,18 +52,6 @@ router.get('/myProfile', function(req, res) {
 
 });
 
-// GET user by number
-router.get('/:number', verifyAuthetication, function(req, res) {
-
-    if(req.isAuthenticated())
-        var user = 1;
-    var number = req.params.number;
-    console.log('INTERFACE: get user by number. Number: ' + number);
-    axios.get('http://localhost:5012/users/' + number + '/profile')
-        .then(data => res.render('profile', {profile: data.data, user}))
-        .catch(error => res.render('error', {error: error}))
-  
-});
 
 // Verify authentication
 function verifyAuthetication(req, res, next){
@@ -58,5 +64,8 @@ function verifyAuthetication(req, res, next){
       res.redirect('../auth/login');
     }
 };
+
+
+
 
 module.exports = router;

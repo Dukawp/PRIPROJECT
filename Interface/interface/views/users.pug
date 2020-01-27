@@ -1,9 +1,71 @@
 extends layout
 
 block content
-  .main.container
-    h1 Users
-    if users!=null
-        each u in users
-            h3= u.nome
-            h4= u.number
+
+  <!-- Feed -->
+  .container-fluid.gedf-wrapper
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title=userI.name
+          ul.list-group.list-group-flush
+            li.list-group-item=userI.number
+            li.list-group-item Mestrado em Engenharia Informática
+          .card-block
+            a.card-link(href='/profile') Profile
+      //publicação      
+      .col-md-6.gedf-main
+        
+      
+        //feed
+        h3(style='margin-top: 5rem') Users
+        .card(style='margin-top: 2rem')
+            .card-block
+            table.table(border="0")
+               tr
+                  th Image
+                  th Name
+                  th Number
+                  th Email
+                  th
+                  each u in users
+                    tr
+                      td
+                        img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                      td
+                        h5.card-title(style='color:#417aba')=u.name
+                          |
+                      td
+                        p.card-text=u.number
+                          |
+                      td
+                        p.card-text=u.email
+                          | 
+                      td
+                        a.card-link(href='/profile/'+u.number) Profile
+      
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
