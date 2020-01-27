@@ -12,4 +12,5 @@ Ainda a fazer:
 10. O login nao funciona à primeira tentativa.
 11. Página da team.
 12. Criar um logotipo personalizado (se houver tempo).
-13. Relatorio.
+13. Testar todo o sistema á procura de bugs.
+14. Relatorio.
