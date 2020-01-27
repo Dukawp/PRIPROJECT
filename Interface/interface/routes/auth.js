@@ -3,6 +3,10 @@ var router = express.Router();
 var axios = require('axios');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
+var antlr4 = require('antlr4/index');
+var RegisterLexer = require('../grammar/registerLexer').registerLexer;
+var RegisterParser = require('../grammar/registerParser').registerParser;
+var RegisterListener = require('../grammar/registerListener').registerListener;
 
 // GET login page
 router.get('/login', function(req, res) {
@@ -28,6 +32,13 @@ router.get('/register', function(req, res) {
   
 });
 
+// GET register by ANTLR page
+router.get('/register/antlr', function(req, res) {
+
+  res.render('antlr');
+  
+});
+
 
 // POST new user
 router.post('/register', function(req, res) {
@@ -39,6 +50,33 @@ router.post('/register', function(req, res) {
     name: req.body.name,
     number: req.body.number,
     email: req.body.email,
+    password: hash
+
+  })
+    .then(res.redirect('/auth/login'))
+    .catch(error => res.render('error', {error: error}))
+
+});
+
+// POST new user with ANTLR
+router.post('/register/antlr', function(req, res) {
+
+  var chars = new antlr4.InputStream(req.body.text);
+  var lexer = new RegisterLexer(chars);
+  var tokens = new antlr4.CommonTokenStream(lexer);
+  var parser = new RegisterParser(tokens);
+
+  parser.buildParseTrees = true;
+  var tree = parser.register();
+  var registerListener = new RegisterListener();
+  antlr4.tree.ParseTreeWalker.DEFAULT.walk(registerListener, tree);
+  var hash = bcrypt.hashSync(tree.password, 10);
+
+  axios.post('http://localhost:5012/users', {
+
+    name: tree.name,
+    number: tree.number,
+    email: tree.email,
     password: hash
 
   })

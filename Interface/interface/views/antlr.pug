@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Register with ANTLR
+        form(action='/auth/register/antlr' method='POST')
+          div.form-group
+            div(class='cols-sm-10')
+              div(class='input-group')
+                span(class='input-group-addon')
+                  i(class='fa fa-user fa' aria-hidden='true')
+                textarea(rows="6" cols="60" class='form-control' name='text' id='text') 
+          div.form-group
+            button.btn.btn-primary(type='submit' style='width:100%;') Register
