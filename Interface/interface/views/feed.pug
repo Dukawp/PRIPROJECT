@@ -9,6 +9,7 @@ block content
     div(class="modal-dialog")
       div(class="modal-content")
       
+      <!-- Nova publicaçao -->
         <!-- Modal Header -->
         div(class="modal-header")
           h4(class="modal-title") New Publication
@@ -19,7 +20,7 @@ block content
           form(action='/feed/newPublication' method='POST')
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Title:
-                  input(type='text' class='form-control' name='title' id='title')  
+                  input(type='text' placeholder='mandatory' class='form-control' name='title' id='title')  
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Text:
                   textarea(rows="4" cols="50" class='form-control' name='text' id='text')  
@@ -28,7 +29,7 @@ block content
                   input(type='text' class='form-control' name='tags' id='tags')  
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
-                  input(type='text' class='form-control' name='target' id='target')
+                  input(type='text' placeholder='mandatory' class='form-control' name='target' id='target')
                 div.form-group  
                   label(for='text' class='cols-sm-2 control-label') File:
                   input(type='file' class='form-control' name='file' id='file')
@@ -38,7 +39,8 @@ block content
         <!-- Modal footer -->
         div(class="modal-footer")
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
-        
+
+  <!-- Novo evento -->     
   <!-- The Modal Event -->
   div(class="modal" id="newEvent")
     div(class="modal-dialog")
@@ -88,6 +90,7 @@ block content
         div(class="modal-footer")
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
   
+  <!-- Novo grupo -->
   <!-- The Modal Group -->
   div(class="modal" id="newGroup")
     div(class="modal-dialog")
@@ -113,6 +116,7 @@ block content
         div(class="modal-footer")
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
 
+  <!-- Feed -->
   .container-fluid.gedf-wrapper
     .row
       //perfil
@@ -167,5 +171,5 @@ block content
             h4 Eventos
         .list-group
           each e in userI.events
-            button.list-group-item.list-group-item-action(type='button') 
+            button.list-group-item.list-group-item-action(type='button')=e
             
