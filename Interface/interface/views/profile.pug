@@ -34,7 +34,9 @@ block content
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
 
 
-  .container-fluid.gedf-wrapper
+  .container-fluid
+    br
+    br
     .row
       //perfil
       .col-md-3
@@ -47,6 +49,7 @@ block content
             li.list-group-item=profile.email
           .card-block
             button.btn.btn-primary(type='button' data-toggle="modal" data-target="#editProfile") Edit Profile
+        img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:410px; display: inline-block;' class='img-fluid')
 
       <!-- Feed -->
       //publicação      
@@ -54,14 +57,13 @@ block content
         
       
         //feed
-        
-        .card(style='margin-top: 2rem')
-          each p in feed
-            if p.author == profile.number
+        each p in feed
+          if p.author == profile.number
+            .card(style='margin-top: 1rem')
               .card-header
                 .row
                   .col-md-1
-                    img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                    img.rounded-circle(width='45', height='45', src='https://img.favpng.com/17/7/13/computer-icons-icon-design-user-png-favpng-uXME5zjHwHTJNs2Kzf5LvgFDR.jpg')
                   .col-md-6
                     .h5= p.authorName
                     .h7.text-muted(style='font-size: 0.8rem')=p.author
@@ -78,14 +80,14 @@ block content
           .card-block
             h4
               b Groups
-        .list-group
-          each g in profile.groups
-            button.list-group-item.list-group-item-action(type='button')=g
+          .list-group
+            each g in profile.groups
+              button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 
               b Events
-        .list-group
-          each e in profile.events
-            button.list-group-item.list-group-item-action(type='button')=e
+          .list-group
+            each e in profile.events
+              button.list-group-item.list-group-item-action(type='button')=e
             

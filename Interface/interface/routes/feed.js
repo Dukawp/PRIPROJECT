@@ -61,7 +61,6 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
     axios.get('http://localhost:5012/users/' + number + '/profile')
       .then(data => {
       
-          console.log('INTERFACE: author name: ' + data);
           axios.post('http://localhost:5012/publications', {
 
             title: req.body.title,
@@ -69,7 +68,7 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDay() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
             tags: req.body.tags,
             author: number,
-            authorName: data,
+            authorName: data.data.name,
             target: req.body.target
 
         })
