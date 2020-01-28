@@ -22,6 +22,22 @@ module.exports.sortByDate = () => {
         .exec()
 }
 
+module.exports.sortByDateByGroup = group => {
+    console.log('MONGO: sortByDateByGroup(' + group + ')');
+    return Publication
+        .find({target: group})
+        .sort({date: -1})
+        .exec()
+}
+
+module.exports.sortByDateByEvent = event => {
+    console.log('MONGO: sortByDateByEvent(' + event + ')');
+    return Publication
+        .find({target: event})
+        .sort({date: -1})
+        .exec()
+}
+
 module.exports.insert = p => {
     console.log('MONGO: insert(' + p + ')');
     var newPublication = new Publication(p);

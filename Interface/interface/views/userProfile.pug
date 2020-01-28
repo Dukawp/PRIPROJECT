@@ -30,13 +30,15 @@ block content
                   .col-md-1
                     img.rounded-circle(width='45', height='45', src='https://img.favpng.com/17/7/13/computer-icons-icon-design-user-png-favpng-uXME5zjHwHTJNs2Kzf5LvgFDR.jpg')
                   .col-md-6
-                    .h5= p.authorName
+                    .h5
+                      b= p.authorName
                     .h7.text-muted(style='font-size: 0.8rem')=p.author
               .card-block
                 .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
                   i.fa.fa-clock-o=p.date
                   |
-                h5.card-title(style='color:#417aba')=p.title
+                h5.card-title(style='color:#417aba')
+                  b=p.title
                 p.card-text=p.text
                   | 
       //grupos e eventos        

@@ -162,13 +162,15 @@ block content
                   .col-md-1
                     img.rounded-circle(width='45', height='45', src='https://img.favpng.com/17/7/13/computer-icons-icon-design-user-png-favpng-uXME5zjHwHTJNs2Kzf5LvgFDR.jpg')
                   .col-md-6
-                    .h5= p.authorName
+                    .h5
+                      b= p.authorName
                     .h7.text-muted(style='font-size: 0.8rem')=p.author
               .card-block
                 .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
                   i.fa.fa-clock-o=p.date
                   |
-                h5.card-title(style='color:#417aba')=p.title
+                h5.card-title(style='color:#417aba')
+                  b=p.title
                 p.card-text=p.text
                   | 
       //grupos e eventos        
@@ -187,12 +189,14 @@ block content
               b Groups
           .list-group
             each g in userI.groups
-              button.list-group-item.list-group-item-action(type='button')=g
+              a(href='/feed?group=' + g)
+                button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 
               b Events
           .list-group
             each e in userI.events
-              button.list-group-item.list-group-item-action(type='button')=e
+              a(href='/feed?event=' + e)
+                button.list-group-item.list-group-item-action(type='button')=e
             

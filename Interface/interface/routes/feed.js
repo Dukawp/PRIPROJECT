@@ -17,17 +17,52 @@ router.get('/', verifyAuthetication, function(req, res) {
     }
     else{
 
-        var userNumber = req.session.passport.user;
-        console.log('INTERFACE: get feed');
-        axios.get('http://localhost:5012/users/' + userNumber + '/profile')
-            .then(userInfo => {
+        if(req.query.group){
 
-              axios.get('http://localhost:5012/publications/')
-                .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
-                .catch(error => res.render('error', {error: error}))
+          var userNumber = req.session.passport.user;
+          var group = req.query.group;
+          console.log('INTERFACE: get feed of group. Group: ' + group);
+          axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
 
-            })
-            .catch(error => res.render('error', {error: error}));
+                axios.get('http://localhost:5012/publications?group=' + group)
+                  .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
+        }
+        else if(req.query.event){
+
+          var userNumber = req.session.passport.user;
+          var event = req.query.event;
+          console.log('INTERFACE: get feed of event. Event: ' + event);
+          axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/publications?event=' + event)
+                  .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
+
+        }
+        else{
+
+          var userNumber = req.session.passport.user;
+          console.log('INTERFACE: get feed');
+          axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/publications/')
+                  .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
+
+        }
     }
 });
 
