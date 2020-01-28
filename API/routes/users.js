@@ -29,6 +29,7 @@ router.get('/:number/profile', function(req, res) {
 router.get('/:number', passport.authenticate('jwt', {session: false}), function(req, res) {
 
   var number = req.params.number;
+  //console.log('API: get one user by number. Number: ' + number);
   Users.findOne(number)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));

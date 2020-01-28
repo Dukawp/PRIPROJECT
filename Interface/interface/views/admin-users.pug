@@ -1,46 +1,26 @@
 extends layout
 
 block content
-    .container-fluid.gedf-wrapper
-      .row
-        //perfil
-        .col-md-3
-          .card(style='margin-top: 1rem')
-            .card-block
-              h4.card-title Admin Interface
-            ul.list-group.list-group-flush
-              li.list-group-item User List
-            ul.list-group.list-group-flush
-              li.list-group-item Mestrado em Engenharia Informática
-        //publicação      
-        .col-md-6.gedf-main
-
-          card(style='margin-top: 2rem')
-          each u in users
-            .card-header
-              .row
-                .col-md-1
-                  img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-                .col-md-6
-                  .h5=u.name
-                  .h7.text-muted(style='font-size: 0.8rem')=u.number
-            .card-block
-              table.table(border="0")
-                tr
-                  th Email
-                  th Groups
-                  th Events
-                  th
-                tr
-                  td
-                    p.card-text=u.email
-                      | 
-                  td
-                      p.card-text=u.groups
-                      |
-                  td
-                      p.card-text=u.events
-                      |
-                  td
-                    button.btn.btn-primary(onclick="deleteUser('" + u._id + "')") Delete
-
+  .main.container
+       h1 Users
+        br
+        br
+        table.table(style="background-color:rgba(0,0,0, .25)")
+          tr
+            th(style="color:white") ID
+            th(style="color:white") Name
+            th(style="color:white") Number
+            th(style="color:white") Email
+            th(style="color:white") Groups
+            th(style="color:white") Events
+            th(style="color:white") Options
+            each u in users
+              tr
+                td(style="color:white")= u._id
+                td(style="color:white")= u.name
+                td(style="color:white")= u.number
+                td(style="color:white")= u.email
+                td(style="color:white")= u.groups
+                td(style="color:white")= u.events
+                td
+                  button.btn.btn-logout(onclick="deleteUser('" + u._id + "')", style="margin-left: 5px") Delete

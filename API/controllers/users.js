@@ -14,6 +14,12 @@ module.exports.findOne = number => {
         .exec()
 }
 
+module.exports.getNameByNumber = number => {
+    return User
+        .findOne({number: number}, {_id: 0, name: 1})
+        .exec()
+}
+
 module.exports.insert = u => {
     console.log('MONGO: insert(' + u + ')');
     var newUser = new User(u);

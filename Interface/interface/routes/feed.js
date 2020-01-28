@@ -56,17 +56,26 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
 
     console.log('INTERFACE: post new publication');
     var reg = new Date();
-    axios.post('http://localhost:5012/publications', {
+    var number = req.session.passport.user;
+    // ESTA A DAR ERRO AQUI. QUERO BUSCAR O NOME DO UTILIZADOR A PARTIR DO NUMBER, MAS NAO ESTA A DAR
+    axios.get('http://localhost:5012/users/' + number + '/profile')
+      .then(data => {
+      
+        console.log('INTERFACE: author name: ' + data);
+        axios.post('http://localhost:5012/publications', {
 
-      title: req.body.title,
-      text: req.body.text,
-      date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDay() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
-      tags: req.body.tags,
-      author: req.session.passport.user,
-      target: req.body.target
+          title: req.body.title,
+          text: req.body.text,
+          date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDay() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+          tags: req.body.tags,
+          author: number,
+          authorName: data,
+          target: req.body.target
 
-    })
-      .then(data => res.redirect('/feed'))
+        })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+      })
       .catch(error => res.render('error', {error: error}))
 });
   

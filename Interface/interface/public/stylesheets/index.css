@@ -1734,5 +1734,7 @@ input[type='file'] {
 	text-decoration:none;
 	}
 
-
+	.modal-backdrop.show {
+		opacity: 0.9;
+	  }
 

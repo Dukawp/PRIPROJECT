@@ -19,6 +19,7 @@ var publicationsSchema = new mongoose.Schema({
     fileMimetype: String,
     tags: String,
     author: {type: String, required: true},
+    authorName: {type: String, required: true},
     target: {type: String, required: true},
     comments: [commentSchema]
 

@@ -1,55 +1,35 @@
 extends layout
 
 block content
-  .container-fluid.gedf-wrapper
-    .row
-      //perfil
-      .col-md-3
-        .card(style='margin-top: 1rem')
-          .card-block
-            h4.card-title Admin Feed
-          ul.list-group.list-group-flush
-            li.list-group-item Publications List
-          ul.list-group.list-group-flush
-            li.list-group-item Mestrado em Engenharia Informática
-      //publicação      
-      .col-md-6.gedf-main
-
-        .card(style='margin-top: 2rem')
-        each p in feed
-          .card-header
-            .row
-              .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-              .col-md-6
-                .h5=p.author
-                .h7.text-muted(style='font-size: 0.8rem')=p.author
-          .card-block
-            table.table(border="0")
+  .main.container
+       h1 Publications
+        br
+        br
+        table.table(style="background-color:rgba(0,0,0, .25)")
+          tr
+            th(style="color:white") ID
+            th(style="color:white") Title
+            th(style="color:white") Text
+            th(style="color:white") Date
+            th(style="color:white") Filepath
+            th(style="color:white") File Mimetype
+            th(style="color:white") Tags
+            th(style="color:white") Author
+            th(style="color:white") Target
+            th(style="color:white") Options
+            each p in feed
               tr
-                th Title / Text
-                th Tags
-                th Target
-                th Date
-                th
-              tr
+                td(style="color:white")= p._id
+                td(style="color:white")= p.title
+                td(style="color:white")= p.text
+                td(style="color:white")= p.date
+                td(style="color:white")= p.filePath
+                td(style="color:white")= p.fileMimetype
+                td(style="color:white")= p.tags
+                td(style="color:white")= p.author
+                td(style="color:white")= p.target
                 td
-                  h5.card-title(style='color:#417aba')=p.title
-                  p.card-text=p.text
-                    | 
-                td
-                    p.card-text=p.tags
-                    |
-                td
-                    p.card-text=p.target
-                    |  
-                td
-                  .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-                    i.fa.fa-clock-o=p.date
-                    |
-                td
-                  button.btn.btn-primary(onclick="deletePublication('" + p._id + "')") Delete
-
+                  button.btn.btn-logout(onclick="deletePublication('" + p._id + "')", style="margin-left: 5px") Delete
 
                   
                 

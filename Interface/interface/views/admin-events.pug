@@ -1,46 +1,24 @@
 extends layout
 
 block content
-  .container-fluid.gedf-wrapper
-    .row
-      //perfil
-      .col-md-3
-        .card(style='margin-top: 1rem')
-          .card-block
-            h4.card-title Admin Interface
-          ul.list-group.list-group-flush
-            li.list-group-item Event List
-          ul.list-group.list-group-flush
-            li.list-group-item Mestrado em Engenharia Informática
-      //publicação      
-      .col-md-6.gedf-main
-
-        .card(style='margin-top: 2rem')
-        .card-header
-            .row
-              .col-md-3
-                .h5 Event List
-        .card-block
-          table.table(border="0")
-            tr
-              th Name
-              th Description
-              th Start Date
-              th End Date
-              th
-              each e in events
-                tr
-                  td
-                    h5.card-title(style='color:#417aba')=e.name
-                      | 
-                  td
-                      p.card-text=e.description
-                      | 
-                  td
-                      p.card-text=e.startDate
-                      | 
-                  td
-                      p.card-text=e.endDate
-                      |     
-                  td
-                    button.btn.btn-primary(onclick="deleteEvent('" + e._id + "')") Delete
+  .main.container
+       h1 Events
+        br
+        br
+        table.table(style="background-color:rgba(0,0,0, .25)")
+          tr
+            th(style="color:white") ID
+            th(style="color:white") Name
+            th(style="color:white") Description
+            th(style="color:white") Start Date
+            th(style="color:white") End Date
+            th(style="color:white") Options
+            each e in events
+              tr
+                td(style="color:white")= e._id
+                td(style="color:white")= e.name
+                td(style="color:white")= e.description
+                td(style="color:white")= e.startDate
+                td(style="color:white")= e.endDate
+                td
+                  button.btn.btn-logout(onclick="deleteEvent('" + e._id + "')", style="margin-left: 5px") Delete

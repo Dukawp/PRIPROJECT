@@ -1,38 +1,20 @@
 extends layout
 
 block content
-  .container-fluid.gedf-wrapper
-    .row
-      //perfil
-      .col-md-3
-        .card(style='margin-top: 1rem')
-          .card-block
-            h4.card-title Admin Interface
-          ul.list-group.list-group-flush
-            li.list-group-item Group List
-          ul.list-group.list-group-flush
-            li.list-group-item Mestrado em Engenharia Informática
-      //publicação      
-      .col-md-6.gedf-main
-
-        .card(style='margin-top: 2rem')
-        .card-header
-            .row
-              .col-md-3
-                .h5 Group List
-        .card-block
-          table.table(border="0")
-            tr
-              th Name
-              th Description
-              th
-              each g in groups
-                tr
-                  td
-                    h5.card-title(style='color:#417aba')=g.name
-                      | 
-                  td
-                      p.card-text=g.description
-                      | 
-                  td
-                    button.btn.btn-primary(onclick="deleteGroup('" + g._id + "')") Delete
+  .main.container
+       h1 Groups
+        br
+        br
+        table.table(style="background-color:rgba(0,0,0, .25)")
+          tr
+            th(style="color:white") ID
+            th(style="color:white") Name
+            th(style="color:white") Description
+            th(style="color:white") Options
+            each g in groups
+              tr
+                td(style="color:white")= g._id
+                td(style="color:white")= g.name
+                td(style="color:white")= g.description
+                td
+                  button.btn.btn-logout(onclick="deleteGroup('" + g._id + "')", style="margin-left: 5px") Delete

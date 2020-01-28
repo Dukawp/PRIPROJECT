@@ -20,7 +20,7 @@ block content
           form(action='/feed/newPublication' method='POST')
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Title:
-                  input(type='text' placeholder='mandatory' class='form-control' name='title' id='title')  
+                  input(type='text' placeholder='Mandatory' class='form-control' name='title' id='title')  
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Text:
                   textarea(rows="4" cols="50" class='form-control' name='text' id='text')  
@@ -29,11 +29,10 @@ block content
                   input(type='text' class='form-control' name='tags' id='tags')  
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
-                  input(type='text' placeholder='mandatory' class='form-control' name='target' id='target')
+                  input(type='text' placeholder='Mandatory' class='form-control' name='target' id='target')
                 div.form-group  
                   label(for='text' class='cols-sm-2 control-label') File:
-                  input(type='file' class='form-control' name='file' id='file')
-                  button.btn.btn-primary(id='add') +1
+                  input(type='file' class='form-control' name='filePath' id='filePath')
                 div.form-group
                   button.btn.btn-primary(type='submit' style='width:100%;' ) Send
         <!-- Modal footer -->
@@ -56,7 +55,7 @@ block content
           form(action='/events/newEvent' method='POST')
                 div.form-group
                     label(for='text' class='cols-sm-2 control-label') Name:
-                        input(type='text' class='form-control' name='name' id='name')  
+                        input(type='text' placeholder='Mandatory' class='form-control' name='name' id='name')  
                 div.form-group
                     label(for='text' class='cols-sm-2 control-label') Description:
                         textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
@@ -106,7 +105,7 @@ block content
           form(action='/groups/newGroup' method='POST')
             div.form-group
                 label(for='text' class='cols-sm-2 control-label') Name:
-                    input(type='text' class='form-control' name='name' id='name')  
+                    input(type='text' placeholder='Mandatory' class='form-control' name='name' id='name')  
             div.form-group
                 label(for='text' class='cols-sm-2 control-label') Description:
                     textarea(rows="4" cols="50" class='form-control' name='description' id='description')
@@ -126,7 +125,6 @@ block content
             h4.card-title=userI.name
           ul.list-group.list-group-flush
             li.list-group-item=userI.number
-            li.list-group-item Mestrado em Engenharia Informática
           .card-block
             a.card-link(href='/profile') Profile
       //publicação      
@@ -137,38 +135,42 @@ block content
         
         .card(style='margin-top: 2rem')
         each p in feed
-          .card-header
-            .row
-              .col-md-1
-                img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-              .col-md-6
-                .h5=p.author
-                .h7.text-muted(style='font-size: 0.8rem')=p.author
-          .card-block
-            .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-              i.fa.fa-clock-o=p.date
-              |
-            h5.card-title(style='color:#417aba')=p.title
-            p.card-text=p.text
-              | 
+          if (userI.groups.includes(p.target) || userI.events.includes(p.target) || p.target == "public")
+            .card-header
+              .row
+                .col-md-1
+                  img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                .col-md-6
+                  .h5= p.authorName
+                  .h7.text-muted(style='font-size: 0.8rem')=p.author
+            .card-block
+              .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+                i.fa.fa-clock-o=p.date
+                |
+              h5.card-title(style='color:#417aba')=p.title
+              p.card-text=p.text
+                | 
       //grupos e eventos        
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
-              h4 Create
+              h4 
+                b Create
         .list-group
           button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newPub") Publication
           button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
           button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newGroup") Group
         .card(style='margin-top: 1rem')  
           .card-block
-            h4 Grupos
+            h4
+              b Grupos
         .list-group
           each g in userI.groups
             button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
-            h4 Eventos
+            h4 
+              b Eventos
         .list-group
           each e in userI.events
             button.list-group-item.list-group-item-action(type='button')=e
