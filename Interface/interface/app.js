@@ -78,6 +78,7 @@ var authRouter = require('./routes/auth');
 var feedRouter = require('./routes/feed');
 var groupsRouter = require('./routes/groups');
 var eventsRouter = require('./routes/events');
+var messagesRouter = require('./routes/messages');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -120,6 +121,7 @@ app.use('/auth', authRouter);
 app.use('/feed', feedRouter);
 app.use('/groups', groupsRouter);
 app.use('/events', eventsRouter);
+app.use('/messages', messagesRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

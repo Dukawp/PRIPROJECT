@@ -1,0 +1,57 @@
+extends layout
+
+block content
+
+  <!-- The Modal Group -->
+  div(class="modal" id="editProfile")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") Edit Profile
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/users/myProfile/change/name' method='POST')
+            div
+              label(for='text' class='cols-sm-2 control-label') New name:
+                input(type='text' class='form-control' name='name' id='name')  
+              button.btn.btn-primary(type='submit' style='width:30%') Change name
+          form(action='/users/myProfile/change/name' method='POST')
+            div
+              label(for='text' class='cols-sm-2 control-label') New email:
+                input(type='text' class='form-control' name='email' id='email')  
+              button.btn.btn-primary(type='submit' style='width:30%') Change email
+          form(action='/users/myProfile/change/name' method='POST')
+            div
+              label(for='text' class='cols-sm-2 control-label') New password:
+                input(type='password' class='form-control' name='password' id='password')  
+              button.btn.btn-primary(type='submit' style='width:30%') Change password
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+
+
+  .container-fluid
+    br
+    br
+    br
+    .row
+      //perfil
+      .col-md-3
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4.card-title
+              b=userI.name
+          ul.list-group.list-group-flush
+            li.list-group-item=userI.number
+            li.list-group-item=userI.email
+          .card-block
+            button.btn.btn-primary(type='button' data-toggle="modal" data-target="#editProfile") Edit Profile
+        img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:94%; display: inline-block;' class='img-fluid')
+
+        
+      
+    
