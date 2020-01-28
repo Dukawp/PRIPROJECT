@@ -17,10 +17,23 @@ router.get('/', verifyAuthetication, function(req, res) {
     }
     else{
 
-        console.log('INTERFACE: get all groups');
-        axios.get('http://localhost:5012/groups/')
-            .then(data => res.render('groups', {groups: data.data, user}))
-            .catch(error => res.render('error', {error: error}))
+        if(req.query.search){
+
+            var desc = req.query.search;
+            console.log('INTERFACE: get groups by description');
+            axios.get('http://localhost:5012/groups?desc=' + desc)
+                .then(data => res.render('groups', {groups: data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
+        else{
+
+            console.log('INTERFACE: get all groups');
+            axios.get('http://localhost:5012/groups/')
+                .then(data => res.render('groups', {groups: data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
 
     }
 });  

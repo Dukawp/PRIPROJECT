@@ -16,6 +16,15 @@ router.get('/', function(req, res) {
       .catch(error => res.status(500).jsonp(error));
 
   }
+  else if(req.query.desc){
+
+    var desc = req.query.desc;
+    console.log('API: get events by description');
+    Events.getByDescription(desc)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error));
+
+  }
   else{
 
     // GET all events

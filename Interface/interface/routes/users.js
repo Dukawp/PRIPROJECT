@@ -16,17 +16,25 @@ router.get('/', verifyAuthetication, function(req, res) {
 
     }
     else{
-        var userNumber = req.session.passport.user;
-        var user = 1;
-        console.log('INTERFACE: get all users');
-        axios.get('http://localhost:5012/users/' + userNumber + '/profile')
-            .then(userInfo => {
-                axios.get('http://localhost:5012/users/')
-                .then(data => res.render('users', {users:data.data, user, userI: userInfo.data}))
-                .catch(error => res.render('error', {error: error}))
-            })
-    }
 
+        if(req.query.search){
+
+            var name = req.query.search;
+            console.log('INTERFACE: get users by name');
+            axios.get('http://localhost:5012/users?name=' + name)
+                .then(data => res.render('users', {users:data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
+        else{
+
+            console.log('INTERFACE: get all users');
+            axios.get('http://localhost:5012/users/')
+                .then(data => res.render('users', {users:data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
+    }
 });
 
 
@@ -34,17 +42,36 @@ router.get('/profile/:number', function(req, res) {
 
     var user = 1;
     var number = req.params.number;
-    console.log('INTERFACE: get profile');
-    axios.get('http://localhost:5012/users/' + number + '/profile')
+
+    if(req.query.search){
+
+        var tag = req.query.search;
+        console.log('INTERFACE: get profile and get publications by tag');
+        axios.get('http://localhost:5012/users/' + number + '/profile')
         .then(userInfo => {
 
-            axios.get('http://localhost:5012/publications/')
+            axios.get('http://localhost:5012/publications?tag=' + tag)
                 .then(data => res.render('userProfile', {feed: data.data, user, profile: userInfo.data}))
                 .catch(error => res.render('error', {error: error}))
 
         })
         .catch(error => res.render('error', {error: error}));
 
+    }
+    else{
+
+        console.log('INTERFACE: get profile');
+        axios.get('http://localhost:5012/users/' + number + '/profile')
+            .then(userInfo => {
+
+                axios.get('http://localhost:5012/publications/')
+                    .then(data => res.render('userProfile', {feed: data.data, user, profile: userInfo.data}))
+                    .catch(error => res.render('error', {error: error}))
+
+            })
+            .catch(error => res.render('error', {error: error}));
+
+        }
 });
 
 
@@ -53,6 +80,23 @@ router.get('/myProfile', function(req, res) {
 
     var user = 1;
     var number = req.session.passport.user;
+
+    if(req.query.search){
+
+        var tag = req.query.search;
+        console.log('INTERFACE: get user profile and get publications by tag');
+        axios.get('http://localhost:5012/users/' + number + '/profile')
+            .then(userInfo => {
+
+                axios.get('http://localhost:5012/publications?tag=' + tag)
+                    .then(data => res.render('profile', {feed: data.data, user, profile: userInfo.data}))
+                    .catch(error => res.render('error', {error: error}))
+
+            })
+            .catch(error => res.render('error', {error: error}));
+
+    }
+
     console.log('INTERFACE: get user profile');
     axios.get('http://localhost:5012/users/' + number + '/profile')
         .then(userInfo => {

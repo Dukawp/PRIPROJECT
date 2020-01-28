@@ -28,6 +28,13 @@ module.exports.getName = id => {
         .exec()
 }
 
+module.exports.getByDescription = desc => {
+    console.log('MONGO: getByDescription(' + desc + ')');
+    return Group
+        .find({description: {$regex: '.*' + desc + '.*'}})
+        .exec()
+}
+
 module.exports.insert = g => {
     console.log('MONGO: insert(' + g + ')');
     console.log(g);

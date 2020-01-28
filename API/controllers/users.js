@@ -69,6 +69,13 @@ module.exports.exitEvent = (number, name) => {
         .updateOne({number: number}, {$pull: {events: name}})
 }
 
+module.exports.getByName = name => {
+    console.log('MONGO: getByName(' + name + ')');
+    return User
+        .find({name: {$regex: '.*' + name + '.*'}})
+        .exec()
+}
+
 module.exports.remove = id => {
     console.log('MONGO: remove(' + id + ')');
     return User

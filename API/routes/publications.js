@@ -16,11 +16,20 @@ router.get('/', function(req, res) {
       .catch(error => res.status(500).jsonp(error));
 
   }
-  else if (req.query.event){
+  else if(req.query.event){
 
     var event = req.query.event;
     console.log('API: get all publications of an event. Event: ' + event);
     Publications.sortByDateByEvent(event)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error));
+
+  }
+  else if(req.query.tag){
+
+    var tag = req.query.tag;
+    console.log('API: get publications by tag');
+    Publications.getByTag(tag)
       .then(data => res.jsonp(data))
       .catch(error => res.status(500).jsonp(error));
 

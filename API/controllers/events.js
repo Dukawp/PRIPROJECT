@@ -44,6 +44,13 @@ module.exports.sortByEndDate = () => {
         .exec()
 }
 
+module.exports.getByDescription = desc => {
+    console.log('MONGO: getByDescription(' + desc + ')');
+    return Event
+        .find({description: {$regex: '.*' + desc + '.*'}})
+        .exec()
+}
+
 module.exports.insert = e => {
     console.log('MONGO: insert(' + e + ')');
     var newEvent = new Event(e);

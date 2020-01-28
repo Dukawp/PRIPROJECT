@@ -38,6 +38,14 @@ module.exports.sortByDateByEvent = event => {
         .exec()
 }
 
+module.exports.getByTag = tag => {
+    console.log('MONGO: getByTag(' + tag + ')');
+    return Publication
+        .find({tags: {$regex: '.*' + tag + '.*'}})
+        .sort({date: -1})
+        .exec()
+}
+
 module.exports.insert = p => {
     console.log('MONGO: insert(' + p + ')');
     var newPublication = new Publication(p);

@@ -5,6 +5,7 @@ block content
   .container-fluid
     br
     br
+    br
     .row
       //perfil
       .col-md-3
@@ -15,16 +16,15 @@ block content
           ul.list-group.list-group-flush
             li.list-group-item=profile.number
             li.list-group-item=profile.email
-        img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:410px; display: inline-block;' class='img-fluid')
+        img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:94%; display: inline-block;' class='img-fluid')
 
       <!-- Feed -->
       //publicação      
       .col-md-6.gedf-main
         //feed
-        
-        .card(style='margin-top: 1rem')
-          each p in feed
-            if p.author == profile.number
+        each p in feed
+          if p.author == profile.number
+            .card(style='margin-top: 1rem')
               .card-header
                 .row
                   .col-md-1
@@ -32,7 +32,7 @@ block content
                   .col-md-6
                     .h5
                       b= p.authorName
-                    .h7.text-muted(style='font-size: 0.8rem')=p.author
+                    .h7.text-muted(style='font-size: 0.8rem')='@' + p.author
               .card-block
                 .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
                   i.fa.fa-clock-o=p.date
@@ -41,6 +41,13 @@ block content
                   b=p.title
                 p.card-text=p.text
                   | 
+                .h7.text-muted(style='font-size: 0.7rem') 
+                  h7
+                    div
+                      b Tags: 
+                      h7= p.tags
+                  h7= '@' + p.target
+                  |
       //grupos e eventos        
       .col-md-3
         .card(style='margin-top: 1rem')  

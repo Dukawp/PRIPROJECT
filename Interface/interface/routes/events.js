@@ -17,11 +17,23 @@ router.get('/', verifyAuthetication, function(req, res) {
     }
     else{
 
-        console.log('INTERFACE: get all events');
-        axios.get('http://localhost:5012/events/')
-            .then(data => res.render('events', {events: data.data, user}))
-            .catch(error => res.render('error', {error: error}))
+        if(req.query.search){
 
+            var desc = req.query.search;
+            console.log('INTERFACE: get events by description');
+            axios.get('http://localhost:5012/events?desc=' + desc)
+                .then(data => res.render('events', {events: data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
+        else{
+
+            console.log('INTERFACE: get all events');
+            axios.get('http://localhost:5012/events/')
+                .then(data => res.render('events', {events: data.data, user}))
+                .catch(error => res.render('error', {error: error}))
+
+        }
     }
 });  
 

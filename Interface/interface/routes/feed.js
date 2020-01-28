@@ -48,6 +48,22 @@ router.get('/', verifyAuthetication, function(req, res) {
               .catch(error => res.render('error', {error: error}));
 
         }
+        else if(req.query.search){
+
+            var tag = req.query.search;
+            console.log('INTERFACE: search. Search: ' + tag);
+            var userNumber = req.session.passport.user;
+            axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+                .then(userInfo => {
+
+                  axios.get('http://localhost:5012/publications?tag=' + tag)
+                    .then(data => res.render('feed', {feed: data.data, user, userI: userInfo.data}))
+                    .catch(error => res.render('error', {error: error}))
+
+                })
+                .catch(error => res.render('error', {error: error}));
+
+        }
         else{
 
           var userNumber = req.session.passport.user;
@@ -92,25 +108,182 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
     console.log('INTERFACE: post new publication');
     var reg = new Date();
     var number = req.session.passport.user;
-    // ESTA A DAR ERRO AQUI. QUERO BUSCAR O NOME DO UTILIZADOR A PARTIR DO NUMBER, MAS NAO ESTA A DAR
-    axios.get('http://localhost:5012/users/' + number + '/profile')
-      .then(data => {
+    if(reg.getUTCDate() < 10 && reg.getUTCHours() < 10 && reg.getUTCMinutes() < 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
       
           axios.post('http://localhost:5012/publications', {
 
             title: req.body.title,
             text: req.body.text,
-            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDay() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + '0' + reg.getUTCDate() + ' ' + '0' + reg.getUTCHours() + ':' + '0' + reg.getUTCMinutes(),
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
             target: req.body.target
 
-        })
+          })
           .then(data => res.redirect('/feed'))
           .catch(error => res.render('error', {error: error}))
-      })
-      .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() < 10 && reg.getUTCHours() < 10 && reg.getUTCMinutes() >= 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + '0' + reg.getUTCDate() + ' ' + '0' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() < 10 && reg.getUTCHours() >= 10 && reg.getUTCMinutes() < 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + '0' + reg.getUTCDate() + ' ' + reg.getUTCHours() + ':' + '0' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() < 10 && reg.getUTCHours() >= 10 && reg.getUTCMinutes() >= 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + '0' + reg.getUTCDate() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() >= 10 && reg.getUTCHours() < 10 && reg.getUTCMinutes() < 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDate() + ' ' + '0' + reg.getUTCHours() + ':' + '0' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() >= 10 && reg.getUTCHours() < 10 && reg.getUTCMinutes() >= 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDate() + ' ' + '0' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else if(reg.getUTCDate() >= 10 && reg.getUTCHours() >= 10 && reg.getUTCMinutes() < 10){
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDate() + ' ' + reg.getUTCHours() + ':' + '0' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
+    else{
+
+      axios.get('http://localhost:5012/users/' + number + '/profile')
+        .then(data => {
+      
+          axios.post('http://localhost:5012/publications', {
+
+            title: req.body.title,
+            text: req.body.text,
+            date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + reg.getUTCDate() + ' ' + reg.getUTCHours() + ':' + reg.getUTCMinutes(),
+            tags: req.body.tags,
+            author: number,
+            authorName: data.data.name,
+            target: req.body.target
+
+          })
+          .then(data => res.redirect('/feed'))
+          .catch(error => res.render('error', {error: error}))
+        })
+        .catch(error => res.render('error', {error: error}))
+
+    }
 });
   
 // Verify authentication

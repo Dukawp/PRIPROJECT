@@ -20,9 +20,12 @@ nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
                             a.nav-item.nav-link.btn.btn-logout.pull-md-right(href='/auth/logout') Logout
                         else
                             a.nav-item.nav-link.btn.btn-login.pull-md-right(href='/auth/login') Login/Register
+            form(method='GET' height='10%')
+                div(class='container h-100')        
             div(class='container h-100')        
+                div(class='container h-100')        
                     div(class='d-flex justify-content-center h-100')
                         div(class='searchbar')
                             input.nav-item(class='search_input' type='text' name='search' placeholder='Search')
-                            a.nav-item(href='-query' class='search_icon')
-                                i(type='submit' class='fas fa-search' name='search')
+                            a.nav-item(class='search_icon')
+                                i(type='submit' class='fas fa-search' name='searchIcon')

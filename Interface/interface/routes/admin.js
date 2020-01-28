@@ -27,11 +27,24 @@ router.get('/', verifyAuthetication, function(req, res) {
 // GET all publications
 router.get('/feed', verifyAuthetication, protectsAdminRoute, function(req, res) {
 
-    var user = 1;
-    console.log('INTERFACE: get all publications');
-    axios.get('http://localhost:5012/publications/')
-        .then(data => res.render('admin-feed', {feed: data.data, user}))
-        .catch(error => res.render('error', {error: error}))  
+    if(req.query.search){
+
+      var tag = req.query.search;
+      var user = 1;
+      axios.get('http://localhost:5012/publications?tag=' + tag)
+          .then(data => res.render('admin-feed', {feed: data.data, user}))
+          .catch(error => res.render('error', {error: error}))  
+
+    }
+    else{
+
+      var user = 1;
+      console.log('INTERFACE: get all publications');
+      axios.get('http://localhost:5012/publications/')
+          .then(data => res.render('admin-feed', {feed: data.data, user}))
+          .catch(error => res.render('error', {error: error}))  
+
+    }
     
 });
 
@@ -50,11 +63,25 @@ router.delete('/feed/:id', verifyAuthetication, protectsAdminRoute, function(req
 // GET all users
 router.get('/users', verifyAuthetication, protectsAdminRoute, function(req, res) {
 
-    var user = 1;
-    console.log('INTERFACE: get all users');
-    axios.get('http://localhost:5012/users/')
+    if(req.query.search){
+
+      var name = req.query.search;
+      console.log('INTERFACE: get users by name');
+      var user = 1;
+      axios.get('http://localhost:5012/users?name=' + name)
         .then(data => res.render('admin-users', {users: data.data, user}))
         .catch(error => res.render('error', {error: error}))  
+
+    }
+    else{
+
+      var user = 1;
+      console.log('INTERFACE: get all users');
+      axios.get('http://localhost:5012/users/')
+          .then(data => res.render('admin-users', {users: data.data, user}))
+          .catch(error => res.render('error', {error: error}))  
+          
+    }
     
 });
 
@@ -73,11 +100,25 @@ router.delete('/users/:id', verifyAuthetication, protectsAdminRoute, function(re
 // GET all groups
 router.get('/groups', verifyAuthetication, protectsAdminRoute, function(req, res) {
 
-    var user = 1;
-    console.log('INTERFACE: get all groups');
-    axios.get('http://localhost:5012/groups/')
+    if(req.query.search){
+
+      var desc = req.query.search;
+      console.log('INTERFACE: get groups by description');
+      var user = 1;
+      axios.get('http://localhost:5012/groups?desc=' + desc)
         .then(data => res.render('admin-groups', {groups: data.data, user}))
         .catch(error => res.render('error', {error: error}))  
+
+    }
+    else{
+
+      var user = 1;
+      console.log('INTERFACE: get all groups');
+      axios.get('http://localhost:5012/groups/')
+          .then(data => res.render('admin-groups', {groups: data.data, user}))
+          .catch(error => res.render('error', {error: error}))  
+
+    }
   
 });
 
@@ -96,11 +137,25 @@ router.delete('/groups/:id', verifyAuthetication, protectsAdminRoute, function(r
 // GET all events
 router.get('/events', verifyAuthetication, protectsAdminRoute, function(req, res) {
 
-    var user = 1;
-    console.log('INTERFACE: get all events');
-    axios.get('http://localhost:5012/events/')
+    if(req.query.search){
+
+      var desc = req.query.search;
+      console.log('INTERFACE: get events by description');
+      var user = 1;
+      axios.get('http://localhost:5012/events?desc=' + desc)
         .then(data => res.render('admin-events', {events: data.data, user}))
         .catch(error => res.render('error', {error: error}))  
+
+    }
+    else{
+
+      var user = 1;
+      console.log('INTERFACE: get all events');
+      axios.get('http://localhost:5012/events/')
+          .then(data => res.render('admin-events', {events: data.data, user}))
+          .catch(error => res.render('error', {error: error}))  
+
+    }
     
 });
 

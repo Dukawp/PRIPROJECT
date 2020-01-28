@@ -6,11 +6,24 @@ var Users = require('../controllers/users');
 
 router.get('/', function(req, res) {
 
-  //GET all users
-  console.log('API: get all users');
-  Users.find()
-    .then(data => res.jsonp(data))
-    .catch(error => res.status(500).jsonp(error));
+  if(req.query.name){
+
+    var name = req.query.name;
+    console.log('API: get users by name');
+    Users.getByName(name)
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error));
+
+  }
+  else{
+
+    //GET all users
+    console.log('API: get all users');
+    Users.find()
+      .then(data => res.jsonp(data))
+      .catch(error => res.status(500).jsonp(error));
+
+  }
 
 });
 
