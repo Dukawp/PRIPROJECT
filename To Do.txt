@@ -1,16 +1,17 @@
 Ainda a fazer:
 
-1. Integrar o sistema com o ANTLR.
+1. Meter o ANTLR a funcionar com um ficheiro (atualmente, o utilizador escreve na propria interface).
 2. No feed, so mostrar as publicacoes que o utilizador pode ver.
 3. Insercao de ficheiros nas publicacoes.
-4. Editar o perfil.
-5. Ver perfis de outros utilizadores.
-6. Dar uso à barra de procura na navbar.
-7. Melhorar a apresentacao do feed (tirar o fundo branco).
-8. Melhorar as paginas do admin.
-9. Ver e adicionar comentarios.
-10. O login nao funciona à primeira tentativa.
-11. Página da team.
-12. Criar um logotipo personalizado (se houver tempo).
-13. Testar todo o sistema á procura de bugs.
-14. Relatorio.
+4. Dar fix às datas quando se cria um novo Evento.
+5. Editar o perfil.
+6. Ver perfis de outros utilizadores.
+7. Dar uso à barra de procura na navbar.
+8. Melhorar a apresentacao do feed (tirar o fundo branco).
+9. Melhorar as paginas do admin.
+10. Ver e adicionar comentarios.
+11. O login nao funciona à primeira tentativa.
+12. Página da team.
+13. Criar um logotipo personalizado (se houver tempo).
+14. Testar todo o sistema á procura de bugs.
+15. Relatorio.
