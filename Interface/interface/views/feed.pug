@@ -60,29 +60,47 @@ block content
                     label(for='text' class='cols-sm-2 control-label') Description:
                         textarea(rows="4" cols="50" class='form-control' name='description' id='description')  
                 h3 Start Date
-
-                      <div class="container">
-                        <div class='col-md-5'>
-                            <div class="form-group">
-                              <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>
-                                    <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                              </div>
-                            </div>
-                        </div>
-                        <div class='col-md-5'>
-                            <div class="form-group">
-                              <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>
-                                    <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
+                div
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Year:
+                          input(type='number' min='2020' class='form-control' name='startYear' id='startYear')
+                  b /
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Month:
+                          input(type='number' min='1' max='12' class='form-control' name='startMonth' id='startMonth')
+                  b /
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Day:
+                          input(type='number' min='1' max='31' class='form-control' name='startDay' id='startDay')
+                  b    
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Hours:
+                          input(type='number' min='0' max='24' class='form-control' name='startHours' id='startHours')
+                  b :
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Minutes:
+                          input(type='number' min='0' max='59' class='form-control' name='startMinutes' id='startMinutes')
+                h3 End Date
+                div
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Year:
+                          input(type='number' min='2020' class='form-control' name='endYear' id='endYear')
+                  b /
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Month:
+                          input(type='number' min='1' max='12' class='form-control' name='endMonth' id='endMonth')
+                  b /
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Day:
+                          input(type='number' min='1' max='31' class='form-control' name='endDay' id='endDay')
+                  b    
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Hours:
+                          input(type='number' min='0' max='24' class='form-control' name='endHours' id='endHours')
+                  b :
+                  form-group
+                      label(for='text' class='cols-sm-2 control-label') Minutes:
+                          input(type='number' min='0' max='59' class='form-control' name='endMinutes' id='endMinutes')
 
                 button.btn.btn-primary(type='submit' style='width:100%;') Send
         <!-- Modal footer -->
@@ -122,11 +140,13 @@ block content
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
-            h4.card-title=userI.name
+            h4.card-title
+              b=userI.name
           ul.list-group.list-group-flush
             li.list-group-item=userI.number
           .card-block
-            a.card-link(href='/profile') Profile
+            a.card-link(href='/users/myProfile') 
+              b My Profile
       //publicação      
       .col-md-6.gedf-main
         
@@ -134,22 +154,22 @@ block content
         //feed
         
         .card(style='margin-top: 2rem')
-        each p in feed
-          if (userI.groups.includes(p.target) || userI.events.includes(p.target) || p.target == "public")
-            .card-header
-              .row
-                .col-md-1
-                  img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-                .col-md-6
-                  .h5= p.authorName
-                  .h7.text-muted(style='font-size: 0.8rem')=p.author
-            .card-block
-              .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
-                i.fa.fa-clock-o=p.date
-                |
-              h5.card-title(style='color:#417aba')=p.title
-              p.card-text=p.text
-                | 
+          each p in feed
+            if (userI.groups.includes(p.target) || userI.events.includes(p.target) || p.target == "public")
+              .card-header
+                .row
+                  .col-md-1
+                    img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                  .col-md-6
+                    .h5= p.authorName
+                    .h7.text-muted(style='font-size: 0.8rem')=p.author
+              .card-block
+                .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+                  i.fa.fa-clock-o=p.date
+                  |
+                h5.card-title(style='color:#417aba')=p.title
+                p.card-text=p.text
+                  | 
       //grupos e eventos        
       .col-md-3
         .card(style='margin-top: 1rem')
@@ -163,14 +183,14 @@ block content
         .card(style='margin-top: 1rem')  
           .card-block
             h4
-              b Grupos
+              b Groups
         .list-group
           each g in userI.groups
             button.list-group-item.list-group-item-action(type='button')=g
         .card(style='margin-top: 1rem')
           .card-block
             h4 
-              b Eventos
+              b Events
         .list-group
           each e in userI.events
             button.list-group-item.list-group-item-action(type='button')=e

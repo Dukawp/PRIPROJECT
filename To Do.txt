@@ -4,8 +4,8 @@ Ainda a fazer:
 ***** FEITO *****  2. No feed, so mostrar as publicacoes que o utilizador pode ver.
 3. Insercao de ficheiros nas publicacoes.
 ***** FEITO *****  4. Dar fix às datas quando se cria um novo Evento.
-5. Editar o perfil.
-6. Ver perfis de outros utilizadores.
+***** FEITO *****  5. Editar o perfil.
+***** FEITO *****  6. Ver perfis de outros utilizadores.
 7. Dar uso à barra de procura na navbar.
 8. Melhorar a apresentacao do feed (tirar o fundo branco).
 ***** FEITO *****  9. Melhorar as paginas do admin.

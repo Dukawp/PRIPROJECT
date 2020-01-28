@@ -79,7 +79,6 @@ var feedRouter = require('./routes/feed');
 var groupsRouter = require('./routes/groups');
 var eventsRouter = require('./routes/events');
 var usersRouter = require('./routes/users');
-var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -122,7 +121,6 @@ app.use('/feed', feedRouter);
 app.use('/groups', groupsRouter);
 app.use('/events', eventsRouter);
 app.use('/users', usersRouter);
-app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -30,13 +30,20 @@ router.get('/', verifyAuthetication, function(req, res) {
 });
 
 
-router.get('/profile/:id', function(req, res) {
+router.get('/profile/:number', function(req, res) {
 
     var user = 1;
-    var number = req.params.id;
+    var number = req.params.number;
+    console.log('INTERFACE: get profile');
     axios.get('http://localhost:5012/users/' + number + '/profile')
-        .then(data => res.render('userProfile', {profile: data.data, user}))
-        .catch(error => res.render('error', {error: error}))
+        .then(userInfo => {
+
+            axios.get('http://localhost:5012/publications/')
+                .then(data => res.render('userProfile', {feed: data.data, user, profile: userInfo.data}))
+                .catch(error => res.render('error', {error: error}))
+
+        })
+        .catch(error => res.render('error', {error: error}));
 
 });
 
@@ -46,9 +53,50 @@ router.get('/myProfile', function(req, res) {
 
     var user = 1;
     var number = req.session.passport.user;
+    console.log('INTERFACE: get user profile');
     axios.get('http://localhost:5012/users/' + number + '/profile')
-        .then(data => res.render('profile', {profile: data.data, user}))
-        .catch(error => res.render('error', {error: error}))
+        .then(userInfo => {
+
+            axios.get('http://localhost:5012/publications/')
+                .then(data => res.render('profile', {feed: data.data, user, profile: userInfo.data}))
+                .catch(error => res.render('error', {error: error}))
+
+        })
+        .catch(error => res.render('error', {error: error}));
+
+});
+
+router.post('/myProfile/change/name', function(req, res) {
+
+    var newName = req.body.name;
+    var number = req.session.passport.user;
+    console.log('INTERFACE: post change name. New name: ' + newName);
+    axios.post('http://localhost:5012/users/' + number + '/change/name', {newName: newName})
+        .then(data => res.redirect('/users/myProfile'))
+        .catch(error => res.render('error', {error: error}));
+
+});
+
+router.post('/myProfile/change/email', function(req, res) {
+
+    var newEmail = req.body.email;
+    var number = req.session.passport.user;
+    console.log('INTERFACE: post change email. New email: ' + newEmail);
+    axios.post('http://localhost:5012/users/' + number + '/change/email', {newEmail: newEmail})
+        .then(data => res.redirect('/users/myProfile'))
+        .catch(error => res.render('error', {error: error}));
+
+});
+
+router.post('/myProfile/change/password', function(req, res) {
+
+    var newPassword = req.body.password;
+    var hash = bcrypt.hashSync(newPassword, 10)
+    var number = req.session.passport.user;
+    console.log('INTERFACE: post change password. New password: ' + hash);
+    axios.post('http://localhost:5012/users/' + number + '/change/password', {newPassword: hash})
+        .then(data => res.redirect('/users/myProfile'))
+        .catch(error => res.render('error', {error: error}));
 
 });
 

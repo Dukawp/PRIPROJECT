@@ -1,53 +1,24 @@
 extends layout
 
 block content
-
-  <!-- Feed -->
-  .container-fluid.gedf-wrapper
-    .row
-      //perfil
-      .col-md-3
-        .card(style='margin-top: 1rem')
-          .card-block
-            h4.card-title=userI.name
-          ul.list-group.list-group-flush
-            li.list-group-item=userI.number
-            li.list-group-item Mestrado em Engenharia Informática
-          .card-block
-            a.card-link(href='/profile') Profile
-      //publicação      
-      .col-md-6.gedf-main
-        
-      
-        //feed
-        h3(style='margin-top: 5rem') Users
-        .card(style='margin-top: 2rem')
-            .card-block
-            table.table(border="0")
-               tr
-                  th Image
-                  th Name
-                  th Number
-                  th Email
-                  th
-                  each u in users
-                    tr
-                      td
-                        img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
-                      td
-                        h5.card-title(style='color:#417aba')=u.name
-                          |
-                      td
-                        p.card-text=u.number
-                          |
-                      td
-                        p.card-text=u.email
-                          | 
-                      td
-                        a.card-link(href='/profile/'+u.number) Profile
-      
-        
-            
+  .main.container
+    h1 Users
+      br
+      br
+      table.table(style="background-color:rgba(0,0,0, .25)")
+        tr
+          th(style="color:white") Number
+          th(style="color:white") Name
+          th(style="color:white") Options
+          
+          each u in users
+            if u.number!='admin'
+              tr
+                td(style="color:white")= u.number
+                td(style="color:white")= u.name
+                td
+                  a.card-link(href='/users/profile/' + u.number) Profile
+                
 
 
 

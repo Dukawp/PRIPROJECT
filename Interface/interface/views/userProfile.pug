@@ -1,57 +1,58 @@
 extends layout
 
 block content
+
   .container-fluid.gedf-wrapper
     .row
       //perfil
       .col-md-3
         .card(style='margin-top: 1rem')
           .card-block
-            h4.card-title=profile.name
+            h4.card-title
+              b=profile.name
           ul.list-group.list-group-flush
             li.list-group-item=profile.number
             li.list-group-item=profile.email
 
+      <!-- Feed -->
+      //publicação      
       .col-md-6.gedf-main
-
-          card(style='margin-top: 2rem')
-            .card-header
+        //feed
+        
+        .card(style='margin-top: 2rem')
+          each p in feed
+            if p.author == profile.number
+              .card-header
+                .row
+                  .col-md-1
+                    img.rounded-circle(width='45', height='45', src='../images/wp1.jpg')
+                  .col-md-6
+                    .h5= p.authorName
+                    .h7.text-muted(style='font-size: 0.8rem')=p.author
+              .card-block
+                .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+                  i.fa.fa-clock-o=p.date
+                  |
+                h5.card-title(style='color:#417aba')=p.title
+                p.card-text=p.text
+                  | 
+      //grupos e eventos        
+      .col-md-3
+        .card(style='margin-top: 1rem')  
+          .card-block
+            h4
+              b Groups
+        .list-group
+          each g in profile.groups
+            button.list-group-item.list-group-item-action(type='button')=g
+        .card(style='margin-top: 1rem')
+          .card-block
+            h4 
+              b Events
+        .list-group
+          each e in profile.events
+            button.list-group-item.list-group-item-action(type='button')=e
             
-            .card-block
-              table.table(border="0")
-                th
-                  h5 Events
-                th
-                  h5 Groups
-                tr  
-                  table.table(border="0")
-                    tr
-                      th Name
-                      th Description
-                      th
-                      each u in profile.events
-                        tr
-                          td
-                            p.card-text=u.name
-                              | 
-                          td
-                              p.card-text=u.description
-                              |
-                  tr  
-                  table.table(border="0")
-                    tr
-                      th Name
-                      th Description
-                      th
-                      each u in profile.groups
-                        tr
-                          td
-                            p.card-text=u.name
-                              | 
-                          td
-                              p.card-text=u.description
-                              |
-
 
 
     

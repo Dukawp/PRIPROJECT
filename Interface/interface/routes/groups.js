@@ -55,7 +55,7 @@ router.post('/newGroup', verifyAuthetication, function(req, res) {
         description: req.body.description
 
     })
-      .then(data => res.redirect('../feed'))
+      .then(data => res.redirect('../groups'))
       .catch(error => res.render('error', {error: error}))
 });
 

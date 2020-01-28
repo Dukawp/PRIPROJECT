@@ -47,6 +47,42 @@ router.post('/', function(req, res) {
 
 });
 
+// POST change name
+router.post('/:number/change/name', function(req, res) {
+
+  var number = req.params.number;
+  var newName = req.body.newName;
+  console.log('API: post change name. New name: ' + newName);
+  Users.editName(number, newName)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST change email
+router.post('/:number/change/email', function(req, res) {
+
+  var number = req.params.number;
+  var newEmail = req.body.newEmail;
+  console.log('API: post change email. New email: ' + newEmail);
+  Users.editEmail(number, newEmail)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST change password
+router.post('/:number/change/password', function(req, res) {
+
+  var number = req.params.number;
+  var newPassword = req.body.newPassword;
+  console.log('API: post change password. New password: ' + newPassword);
+  Users.editPassword(number, newPassword)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
 // DELETE user
 router.delete('/:id', function(req, res) {
 
