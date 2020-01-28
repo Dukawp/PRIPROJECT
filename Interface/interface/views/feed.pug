@@ -2,11 +2,9 @@ extends layout
 
 block content
 
-
-
   <!-- The Modal Pub -->
   div(class="modal" id="newPub")
-    div(class="modal-dialog")
+    div(class="modal-dialog").card
       div(class="modal-content")
       
       <!-- Nova publicaçao -->
@@ -134,7 +132,9 @@ block content
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
 
   <!-- Feed -->
-  .container-fluid.gedf-wrapper
+  br
+  br
+  .container-fluid
     .row
       //perfil
       .col-md-3
@@ -153,8 +153,8 @@ block content
       
         //feed
         
-        .card(style='margin-top: 2rem')
-          each p in feed
+        each p in feed
+          .card(style='margin-top: 1rem')
             if (userI.groups.includes(p.target) || userI.events.includes(p.target) || p.target == "public")
               .card-header
                 .row
