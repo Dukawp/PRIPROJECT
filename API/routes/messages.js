@@ -21,3 +21,5 @@ router.post('/', function(req, res) {
         .catch(error => res.status(500).jsonp(error));
   
   });
+
+module.exports = router;
