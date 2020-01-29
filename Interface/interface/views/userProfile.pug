@@ -2,6 +2,32 @@ extends layout
 
 block content
 
+  <!-- Novo comentario -->
+  <!-- The Modal Group -->
+  div(class="modal" id="newComment")
+    div(class="modal-dialog")
+      div(class="modal-content")
+      
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") New Comment
+          button(type="button" class="close" data-dismiss="modal") &times
+        
+        <!-- Modal body -->
+        div(class="modal-body")
+          form(action='/feed/newComment' method='POST')
+            div.form-group
+              label(for='text' class='cols-sm-2 control-label') Publication ID:
+                <input type="text" name="myId" id="myId" value=""/>  
+            div.form-group
+                label(for='text' class='cols-sm-2 control-label') Comment:
+                    textarea(rows="5" cols="50" class='form-control' name='commentText' id='commentText')
+            div.form-group
+                button.btn.btn-primary(type='submit' style='width:100%;') Send
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+
   .container-fluid
     br
     br
@@ -51,7 +77,7 @@ block content
                     a(href=fi download)
                       i(class='fas fa-save' style='font-size:48px;color:dark-grey')
                 hr
-                button.btn.btn-secondary(type='submit')
+                button.btn.btn-secondary(type='button' data-id=p._id class="open-AddId" data-toggle="modal" data-target="#newComment")
                     i.fa.fa-comment
                       |  Comment
                 ul.list-group.list-group-flush(style='margin-top: 1rem')

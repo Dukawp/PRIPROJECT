@@ -61,8 +61,21 @@ router.post('/', function(req, res) {
 
   console.log('API: post new publication');
   Publications.insert(req.body)
-  .then(data => res.jsonp(data))
-  .catch(error => res.status(500).jsonp(error));
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error));
+
+});
+
+// POST new comment
+router.post('/newComment', function(req, res) {
+
+  console.log('API: post new comment');
+  var id = req.body.id;
+  var commentAuthor = req.body.commentAuthor;
+  var commentText = req.body.commentText;
+  Publications.insertComment(id, commentAuthor, commentText)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error));
 
 });
 

@@ -52,6 +52,14 @@ module.exports.insert = p => {
     return newPublication.save();
 }
 
+module.exports.insertComment = (id, commentAuthor, commentText) => {
+    console.log('MONGO: insertComment(' + id + ', ' + commentAuthor + ', ' + commentText);
+    var newComment = {commentAuthor: commentAuthor, commentText: commentText};
+    return Publication
+        .update({_id: id}, {$push: {comments: newComment}})
+        .exec()
+}
+
 module.exports.remove = id => {
     console.log('MONGO: remove(' + id + ')');
     return Publication

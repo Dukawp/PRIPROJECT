@@ -187,7 +187,8 @@ router.post('/newPublication', upload.array('file'), verifyAuthetication, functi
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -311,6 +312,23 @@ router.post('/newPublication', upload.array('file'), verifyAuthetication, functi
         .catch(error => res.render('error', {error: error}))
 
     }
+});
+
+// POST new comment
+router.post('/newComment', verifyAuthetication, function(req, res) {
+
+    console.log('INTERFACE: post new comment');
+    var number = req.session.passport.user;
+    axios.post('http://localhost:5012/publications/newComment', {
+
+      id: req.body.myId,
+      commentAuthor: number,
+      commentText: req.body.commentText
+      
+    })
+      .then(data => res.redirect('/feed'))
+      .catch(error => res.render('error', {error: error}))
+
 });
   
 // Verify authentication
