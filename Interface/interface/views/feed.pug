@@ -15,7 +15,7 @@ block content
         
         <!-- Modal body -->
         div(class="modal-body")
-          form(action='/feed/newPublication' method='POST')
+          form(action='/feed/newPublication' method='POST' enctype="multipart/form-data")
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Title:
                   input(type='text' placeholder='Mandatory' class='form-control' name='title' id='title')  
@@ -28,9 +28,15 @@ block content
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
                   input(type='text' placeholder='Mandatory' class='form-control' name='target' id='target')
-                div.form-group  
-                  label(for='text' class='cols-sm-2 control-label') File:
-                  input(type='file' class='form-control' name='filePath' id='filePath')
+                  .w3-container(id='lista')
+                    .w3-container(id='f1')
+                      .w3-cell-row
+                        label.w3-cell Description:
+                        input.w3-input.w3-cell.w3-border(type="text" name="desc")
+                      .w3-cell-row
+                        label.w3-cell File:
+                        input.w3-input.w3-cell(type="file" name="file")
+                  button.w3-button.w3-round-large.w3-indigo(id='mais1') +1
                 div.form-group
                   button.btn.btn-primary(type='submit' style='width:100%;' ) Send
         <!-- Modal footer -->
@@ -173,7 +179,16 @@ block content
                 h5.card-title(style='color:#417aba')
                   b=p.title
                 p.card-text=p.text
-                  | 
+                  |
+                each fi in p.files
+                  if(fi.split(".")[3] == "png" || fi.split(".")[3] == "jpg" || fi.split(".")[3] == "PNG" || fi.split(".")[3] == "JPEG")
+                    p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
+                    a(href=fi download)
+                      img(width='100', height='100', src=p.files)
+                  else
+                    p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
+                    a(href=fi download)
+                      i(class='fas fa-save' style='font-size:48px;color:dark-grey')
                 .h7.text-muted(style='font-size: 0.7rem') 
                   h7
                     div

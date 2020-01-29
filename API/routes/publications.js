@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var multer = require('multer');
-var upload = multer({dest: 'uploads/'});
+
 
 var Publications = require('../controllers/publications');
 
@@ -58,7 +57,7 @@ router.get('/:id', function(req, res) {
 });
 
 // POST new publication
-router.post('/', upload.array('file'), function(req, res) {
+router.post('/', function(req, res) {
 
   console.log('API: post new publication');
   Publications.insert(req.body)

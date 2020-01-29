@@ -5,6 +5,13 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
 
+const fs = require('fs')
+var multer = require('multer');
+var upload = multer({dest: 'uploads/'});
+
+//var File = require('../models/file')
+
+
 // GET feed
 router.get('/', verifyAuthetication, function(req, res) {
 
@@ -103,11 +110,25 @@ router.get('/:id', verifyAuthetication, function(req, res) {
 });
 
 // POST new publication
-router.post('/newPublication', verifyAuthetication, function(req, res) {
+router.post('/newPublication', upload.array('file'), verifyAuthetication, function(req, res) {
 
     console.log('INTERFACE: post new publication');
     var reg = new Date();
     var number = req.session.passport.user;
+    console.log("AAAAAAAAAAAAAAAA-----> "+ req.files.length)
+
+    var allFiles = []
+    var listaErros = []
+    for(let i = 0 ; i < req.files.length ; i++){
+        let oldPath = __dirname + '/../' + req.files[i].path
+        console.log('O CAMINHO ONDE VOU BUSCAR  -> '+oldPath)
+        let newPath = __dirname + '/../public/files/' + req.files[i].originalname
+        console.log('ONDE VOU GUARDAR -> ' + newPath)
+        fs.rename(oldPath, newPath, function(err) {
+            if (err) throw err
+        })
+        allFiles.push(newPath)
+    }
     if(reg.getUTCDate() < 10 && reg.getUTCHours() < 10 && reg.getUTCMinutes() < 10){
 
       axios.get('http://localhost:5012/users/' + number + '/profile')
@@ -121,8 +142,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
-
+            target: req.body.target,
+            files: allFiles
           })
           .then(data => res.redirect('/feed'))
           .catch(error => res.render('error', {error: error}))
@@ -143,7 +164,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -187,7 +209,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -209,7 +232,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -231,7 +255,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -253,7 +278,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))
@@ -275,7 +301,8 @@ router.post('/newPublication', verifyAuthetication, function(req, res) {
             tags: req.body.tags,
             author: number,
             authorName: data.data.name,
-            target: req.body.target
+            target: req.body.target,
+            files: allFiles
 
           })
           .then(data => res.redirect('/feed'))

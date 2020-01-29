@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
 
-const Files = require('./files').schema;
-
 
 var commentSchema = new mongoose.Schema({
 
@@ -25,7 +23,7 @@ var publicationsSchema = new mongoose.Schema({
     authorName: {type: String, required: true},
     target: {type: String, required: true},
     comments: [commentSchema],
-    files : [Files]
+    files : [String]
 
 },
 {
