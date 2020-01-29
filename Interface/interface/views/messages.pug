@@ -2,25 +2,19 @@ extends layout
 
 block content
 
+  .main.container
+    h1 Messages
+      br
+      br
+      table.table(style="background-color:rgba(0,0,0, .25)")
+        tr
+          th(style="color:white") User
+          th(style="color:white") Options
 
-  .container-fluid
-    br
-    br
-    br
-    .row
-      //perfil
-      .col-md-3
-        .card(style='margin-top: 1rem')
-          .card-block
-            h4.card-title
-              b=userI.name
-          ul.list-group.list-group-flush
-            li.list-group-item=userI.number
-            li.list-group-item=userI.email
-          .card-block
-            button.btn.btn-primary(type='button' data-toggle="modal" data-target="#editProfile") Edit Profile
-        img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:94%; display: inline-block;' class='img-fluid')
 
-        
-      
-    
+          each m in elem
+            tr
+              td(style="color:white")= m.split(' - ')[1]
+              td
+                a(href="/messages/from/"+ m.split(' - ')[0]) See Messages
+

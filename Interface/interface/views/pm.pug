@@ -1,0 +1,51 @@
+extends layout
+
+block content
+
+
+
+    .container-fluid
+        .row
+        //perfil
+        .col-md-3
+            .card(style='margin-top: 5rem')
+                .card-block
+                    h4.card-title
+                    b Message from
+                ul.list-group.list-group-flush 
+                .card-block
+                    h4.card-title
+                    b=message[0].author2Name
+                ul.list-group.list-group-flush
+                    li.list-group-item=message[0].author2
+
+        .row 
+            .card(style='margin-top: 5rem')
+            .col-md-6.gedf-main
+                each m in message
+                
+                    if(m.author1 == userId)
+                        .card(style='margin-top: 5rem')
+                            .card-header
+                            .card-block
+                                .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+                                    i.fa.fa-clock-o=m.date
+                                    |
+                                .row
+                                    .col-md-6
+                                        .h5
+                                            b= m.text
+                                        .h7.text-muted(style='font-size: 0.8rem')='@' + m.author1
+
+                    else
+                        .card(style='margin-top: 5rem')
+                            .card-header
+                            .card-block
+                                .h7.text-muted(style='font-size: 0.8rem; margin-bottom: 1rem')
+                                    i.fa.fa-clock-o=m.date
+                                    |
+                                .row
+                                    .col-md-6
+                                        .h5
+                                            b= m.text
+                                        .h7.text-muted(style='font-size: 0.8rem')='@' + m.author1
