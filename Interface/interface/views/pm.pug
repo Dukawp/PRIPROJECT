@@ -1,9 +1,36 @@
 extends layout
 
 block content
-
-
-
+   
+    <!-- The Modal Pub -->
+    div(class="modal hide" id="addId")
+        div(class="modal-dialog").card
+            div(class="modal-content")
+            
+            <!-- Nova publicaçao -->
+                <!-- Modal Header -->
+                div(class="modal-header")
+                    h4(class="modal-title") New Message
+                    button(type="button" class="close" data-dismiss="modal") &times
+                
+                    <!-- Modal body -->
+                    div(class="modal-body")
+                    form(action='/messages/newPm' method='POST') 
+                            label(for='text' class='cols-sm-2 control-label') To
+                            br
+                            label(for='text' class='cols-sm-2 control-label') Name:
+                                input(type="text" name="myName" id="myName" value="")   
+                            label(for='text' class='cols-sm-2 control-label') Number:
+                                input(type="text" name="myId" id="myId" value="")   
+                            div.form-group
+                                label(for='text' class='cols-sm-2 control-label') Text
+                                textarea(rows="4" cols="50" class='form-control' name='text' id='text') 
+                            div.form-group
+                                button.btn.btn-primary(type='submit' style='width:100%;' ) Send
+                    <!-- Modal footer -->
+                    div(class="modal-footer")
+                        button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+            
     .container-fluid
         .row
         //perfil
@@ -16,9 +43,15 @@ block content
                 .card-block
                     if(message[0].author1 == userId)
                         h4.card-title
-                        b=message[0].author2
+                        b=userI.name
+                        .card-block
+                            a(data-toggle="modal" data-id=message[0].author1 data-name=userI.name class="open-AddId btn btn-primary" href="#addId") Private message
+
                     else
-                        b=message[0].author1
+                        b=userI.name
+                        .card-block
+                            a(data-toggle="modal" data-id=message[0].author1 data-name=userI.name class="open-AddId btn btn-primary" href="#addId") Private message
+
 
         .row 
             .card(style='margin-top: 5rem')

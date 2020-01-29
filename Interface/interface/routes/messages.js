@@ -56,11 +56,13 @@ router.get('/from/:id', verifyAuthetication, function(req, res) {
   else{
     var userNumber = req.session.passport.user;
     userNumber += ' - ' + req.params.id
-    axios.get('http://localhost:5012/messages/from/' + userNumber)
-      .then(data => res.render('pm', {message: data.data, userId: req.session.passport.user}))
-      .catch(error => res.render('error', {error: error}))
-    }
-
+    axios.get('http://localhost:5012/users/' + req.params.id + '/profile')
+              .then(userInfo => {
+      axios.get('http://localhost:5012/messages/from/' + userNumber)
+        .then(data => res.render('pm', {message: data.data, userId: req.session.passport.user, userI: userInfo.data}))
+        .catch(error => res.render('error', {error: error}))
+    })
+  }
 })
 
 router.post('/newPm', verifyAuthetication, function(req, res) {
