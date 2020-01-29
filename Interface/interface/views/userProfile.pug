@@ -14,7 +14,7 @@ block content
             h4.card-title
               b=profile.name
           ul.list-group.list-group-flush
-            li.list-group-item=profile.number
+            li.list-group-item= '@' + profile.number
             li.list-group-item=profile.email
         img(src='https://i.imgur.com/HjUcbLu.png' style='max-width:94%; display: inline-block;' class='img-fluid')
 
@@ -40,7 +40,30 @@ block content
                 h5.card-title(style='color:#417aba')
                   b=p.title
                 p.card-text=p.text
-                  | 
+                  |
+                each fi in p.files
+                  if(fi.split(".")[3] == "png" || fi.split(".")[3] == "jpg" || fi.split(".")[3] == "PNG" || fi.split(".")[3] == "JPEG")
+                    p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
+                    a(href=fi download)
+                      img(width='100', height='100', src=p.files)
+                  else
+                    p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
+                    a(href=fi download)
+                      i(class='fas fa-save' style='font-size:48px;color:dark-grey')
+                hr
+                button.btn.btn-secondary(type='submit')
+                    i.fa.fa-comment
+                      |  Comment
+                ul.list-group.list-group-flush(style='margin-top: 1rem')
+                  each c in p.comments
+                    li.list-group-item
+                      .row
+                        .col-md-1
+                          img.rounded-circle(width='30', height='30', src='https://img.favpng.com/17/7/13/computer-icons-icon-design-user-png-favpng-uXME5zjHwHTJNs2Kzf5LvgFDR.jpg')
+                        .col
+                          .h7.text(style='font-size: 1rem')= '@' + c.commentAuthor
+                          .h7.text-muted(style='font-size: 1rem')= c.commentText
+                | 
                 .h7.text-muted(style='font-size: 0.7rem') 
                   h7
                     div
@@ -64,9 +87,3 @@ block content
           .list-group
             each e in profile.events
               button.list-group-item.list-group-item-action(type='button')=e
-            
-
-
-    
-      
-            

@@ -21,21 +21,35 @@ router.get('/', verifyAuthetication, function(req, res) {
 
             var desc = req.query.search;
             console.log('INTERFACE: get events by description');
-            axios.get('http://localhost:5012/events?desc=' + desc)
-                .then(data => res.render('events', {events: data.data, user}))
-                .catch(error => res.render('error', {error: error}))
+            var userNumber = req.session.passport.user;
+            axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/events?desc=' + desc)
+                  .then(data => res.render('events', {events: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
 
         }
         else{
 
-            console.log('INTERFACE: get all events');
-            axios.get('http://localhost:5012/events/')
-                .then(data => res.render('events', {events: data.data, user}))
-                .catch(error => res.render('error', {error: error}))
+            var userNumber = req.session.passport.user;
+            console.log('INTERFACE: get events');
+            axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/events/')
+                  .then(data => res.render('events', {events: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
 
         }
     }
-});  
+}); 
 
 // GET new event page
 router.get('/newEvent', verifyAuthetication, function(req, res) {

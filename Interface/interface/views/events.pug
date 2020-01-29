@@ -19,5 +19,7 @@ block content
                 td(style="color:white")= e.startDate
                 td(style="color:white")= e.endDate
                 td
-                  button.btn.btn-login(onclick="joinEvent('" + e._id + "')", style="margin-left: 5px") Join
-                  button.btn.btn-logout(onclick="exitEvent('" + e._id + "')", style="margin-left: 5px") Exit
+                  if userI.events.includes(e.name)
+                    button.btn.btn-logout(onclick="exitEvent('" + e._id + "')", style="margin-left: 5px") Exit
+                  else
+                    button.btn.btn-login(onclick="joinEvent('" + e._id + "')", style="margin-left: 5px") Join

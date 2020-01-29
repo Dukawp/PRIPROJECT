@@ -26,8 +26,14 @@ block content
                   label(for='text' class='cols-sm-2 control-label') Tags:
                   input(type='text' class='form-control' name='tags' id='tags')  
                 div.form-group
-                  label(for='text' class='cols-sm-2 control-label') Target ("public" or name of the group/event):
-                  input(type='text' placeholder='Mandatory' class='form-control' name='target' id='target')
+                  label(for='sel1') Target (public or group/event):
+                  select(class='form-control' id='target' name='target')
+                    option(value='public') Public
+                    each g in userI.groups
+                      option(value=g)= g
+                    each e in userI.events
+                      option(value=e)=e
+                div.form-group
                   .w3-container(id='lista')
                     .w3-container(id='f1')
                       .w3-cell-row
@@ -150,7 +156,7 @@ block content
             h4.card-title
               b=userI.name
           ul.list-group.list-group-flush
-            li.list-group-item=userI.number
+            li.list-group-item= '@' + userI.number
           .card-block
             a.card-link(href='/users/myProfile') 
               b My Profile
@@ -189,6 +195,20 @@ block content
                     p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
                     a(href=fi download)
                       i(class='fas fa-save' style='font-size:48px;color:dark-grey')
+                hr
+                button.btn.btn-secondary(type='submit')
+                    i.fa.fa-comment
+                      |  Comment
+                ul.list-group.list-group-flush(style='margin-top: 1rem')
+                  each c in p.comments
+                    li.list-group-item
+                      .row
+                        .col-md-1
+                          img.rounded-circle(width='30', height='30', src='https://img.favpng.com/17/7/13/computer-icons-icon-design-user-png-favpng-uXME5zjHwHTJNs2Kzf5LvgFDR.jpg')
+                        .col
+                          .h7.text(style='font-size: 1rem')= '@' + c.commentAuthor
+                          .h7.text-muted(style='font-size: 1rem')= c.commentText
+                | 
                 .h7.text-muted(style='font-size: 0.7rem') 
                   h7
                     div
@@ -204,8 +224,8 @@ block content
                 b Create
           .list-group
             button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newPub") Publication
-            button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
             button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newGroup") Group
+            button.list-group-item.list-group-item-action(type='button' data-toggle="modal" data-target="#newEvent") Event
         .card(style='margin-top: 1rem')  
           .card-block
             h4
@@ -221,5 +241,4 @@ block content
           .list-group
             each e in userI.events
               a(href='/feed?event=' + e)
-                button.list-group-item.list-group-item-action(type='button')=e
-            
+                button.list-group-item.list-group-item-action(type='button')=e   

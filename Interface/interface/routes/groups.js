@@ -21,22 +21,36 @@ router.get('/', verifyAuthetication, function(req, res) {
 
             var desc = req.query.search;
             console.log('INTERFACE: get groups by description');
-            axios.get('http://localhost:5012/groups?desc=' + desc)
-                .then(data => res.render('groups', {groups: data.data, user}))
-                .catch(error => res.render('error', {error: error}))
+            var userNumber = req.session.passport.user;
+            axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/groups?desc=' + desc)
+                  .then(data => res.render('groups', {groups: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
 
         }
         else{
 
-            console.log('INTERFACE: get all groups');
-            axios.get('http://localhost:5012/groups/')
-                .then(data => res.render('groups', {groups: data.data, user}))
-                .catch(error => res.render('error', {error: error}))
+            var userNumber = req.session.passport.user;
+            console.log('INTERFACE: get groups');
+            axios.get('http://localhost:5012/users/' + userNumber + '/profile')
+              .then(userInfo => {
+
+                axios.get('http://localhost:5012/groups/')
+                  .then(data => res.render('groups', {groups: data.data, user, userI: userInfo.data}))
+                  .catch(error => res.render('error', {error: error}))
+
+              })
+              .catch(error => res.render('error', {error: error}));
 
         }
 
     }
-});  
+}); 
 
 // GET new group page
 router.get('/newGroup', verifyAuthetication, function(req, res) {

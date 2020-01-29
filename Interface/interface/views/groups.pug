@@ -16,6 +16,7 @@ block content
               td(style="color:white")= g.name
               td(style="color:white")= g.description
               td
-                button.btn.btn-login(onclick="joinGroup('" + g._id + "')", style="margin-left: 5px") Join
-                button.btn.btn-logout(onclick="exitGroup('" + g._id + "')", style="margin-left: 5px") Exit
-              
+                if userI.groups.includes(g.name)
+                    button.btn.btn-logout(onclick="exitGroup('" + g._id + "')", style="margin-left: 5px") Exit
+                else
+                    button.btn.btn-login(onclick="joinGroup('" + g._id + "')", style="margin-left: 5px") Join
