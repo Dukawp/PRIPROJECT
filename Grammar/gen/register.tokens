@@ -1,0 +1,16 @@
+DOT=1
+COMMA=2
+ASSIGN=3
+NAME=4
+NUMBER=5
+EMAIL=6
+PASSWORD=7
+TEXT=8
+WS=9
+'.'=1
+','=2
+':'=3
+'name'=4
+'number'=5
+'email'=6
+'password'=7

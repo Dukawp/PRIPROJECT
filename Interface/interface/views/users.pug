@@ -38,7 +38,7 @@ block content
           th(style="color:white") Options
           
           each u in users
-            if u.number!='admin'
+            if u.number!='admin'&& u.number != userNumber
               tr
                 td(style="color:white")= u.number
                 td(style="color:white")= u.name

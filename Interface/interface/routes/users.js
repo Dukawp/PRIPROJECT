@@ -9,6 +9,7 @@ var bcrypt = require('bcryptjs');
 router.get('/', verifyAuthetication, function(req, res) {
 
     var user = 1;
+    var userNumber = req.session.passport.user;
     if(req.session.passport.user == "admin"){
 
         console.log('INTERFACE: Admin permissions granted');
@@ -22,7 +23,7 @@ router.get('/', verifyAuthetication, function(req, res) {
             var name = req.query.search;
             console.log('INTERFACE: get users by name');
             axios.get('http://localhost:5012/users?name=' + name)
-                .then(data => res.render('users', {users:data.data, user}))
+                .then(data => res.render('users', {users:data.data, user, userNumber}))
                 .catch(error => res.render('error', {error: error}))
 
         }
@@ -30,7 +31,7 @@ router.get('/', verifyAuthetication, function(req, res) {
 
             console.log('INTERFACE: get all users');
             axios.get('http://localhost:5012/users/')
-                .then(data => res.render('users', {users:data.data, user}))
+                .then(data => res.render('users', {users:data.data, user, userNumber}))
                 .catch(error => res.render('error', {error: error}))
 
         }

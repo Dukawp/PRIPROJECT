@@ -11,6 +11,20 @@ block content
               div(class='input-group')
                 span(class='input-group-addon')
                   i(class='fa fa-user fa' aria-hidden='true')
-                textarea(rows="6" cols="60" class='form-control' name='text' id='text') 
+                textarea(rows="6" cols="60" class='form-control' name='text' id='text')
           div.form-group
             button.btn.btn-primary(type='submit' style='width:100%;') Register
+
+        br
+        br
+        h4(align='center')
+          b -------------------- Or --------------------
+        br
+        br
+
+        form(action='/auth/register/antlr/file' method='POST' enctype="multipart/form-data")
+            div.form-group
+                  label.w3-cell File:
+                  input.w3-input.w3-cell(type="file" name="file")
+            div.form-group
+                  button.btn.btn-primary(type='submit' style='width:100%;') Register
