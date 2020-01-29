@@ -60,6 +60,7 @@ router.get('/:id', function(req, res) {
 router.post('/', function(req, res) {
 
   console.log('API: post new publication');
+  console.log(req.body.title);
   Publications.insert(req.body)
     .then(data => res.jsonp(data))
     .catch(error => res.status(500).jsonp(error));

@@ -44,14 +44,14 @@ block content
           th(style="color:white") Chat
           
           each u in users
-            if u.number!='admin'
+            if u.number!='admin' && u.number != userNumber
               tr
                 td(style="color:white")= u.number
                 td(style="color:white")= u.name
                 td
                   a.card-link(href='/users/profile/' + u.number) Profile
-                  br
-                  a(data-toggle="modal" data-id=u.number data-name=u.name class="open-AddId btn btn-primary" href="#addId") Private message
+                td
+                  a.btn.btn-primary(data-toggle="modal" data-id=u.number data-name=u.name class="open-AddId btn btn-primary" href="#addId") Message
 
 
 

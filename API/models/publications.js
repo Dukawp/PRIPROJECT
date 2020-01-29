@@ -16,7 +16,7 @@ var commentSchema = new mongoose.Schema({
 var publicationsSchema = new mongoose.Schema({
 
     title: {type: String, required: true},
-    text: {type:String, required: true},
+    text: String,
     date: String,
     tags: String,
     author: {type: String, required: true},
