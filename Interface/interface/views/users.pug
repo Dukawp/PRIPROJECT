@@ -16,11 +16,16 @@ block content
         <!-- Modal body -->
         div(class="modal-body")
           form(action='/messages/newPm' method='POST') 
+                label(for='text' class='cols-sm-2 control-label') To
+                br
+                label(for='text' class='cols-sm-2 control-label') Name:
+                  input(type="text" name="myName" id="myName" value="")   
+                label(for='text' class='cols-sm-2 control-label') Number:
+                  input(type="text" name="myId" id="myId" value="")   
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Text
                   textarea(rows="4" cols="50" class='form-control' name='text' id='text') 
                 div.form-group
-                  input(type="text" name="myId" id="myId" value="")   
                   button.btn.btn-primary(type='submit' style='width:100%;' ) Send
         <!-- Modal footer -->
         div(class="modal-footer")
@@ -38,14 +43,14 @@ block content
           th(style="color:white") Options
           
           each u in users
-            if u.number!='admin'&& u.number != userNumber
+            if u.number!='admin'
               tr
                 td(style="color:white")= u.number
                 td(style="color:white")= u.name
                 td
                   a.card-link(href='/users/profile/' + u.number) Profile
                   br
-                  a(data-toggle="modal" data-id=u.number class="open-AddId btn btn-primary" href="#addId") Private message
+                  a(data-toggle="modal" data-id=u.number data-name=u.name class="open-AddId btn btn-primary" href="#addId") Private message
 
 
 

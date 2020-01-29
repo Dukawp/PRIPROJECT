@@ -14,10 +14,11 @@ block content
                     b Message from
                 ul.list-group.list-group-flush 
                 .card-block
-                    h4.card-title
-                    b=message[0].author2Name
-                ul.list-group.list-group-flush
-                    li.list-group-item=message[0].author2
+                    if(message[0].author1 == userId)
+                        h4.card-title
+                        b=message[0].author2
+                    else
+                        b=message[0].author1
 
         .row 
             .card(style='margin-top: 5rem')
