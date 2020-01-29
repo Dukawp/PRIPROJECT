@@ -35,7 +35,8 @@ block content
         tr
           th(style="color:white") Number
           th(style="color:white") Name
-          th(style="color:white") Options
+          th(style="color:white") Profile
+          th(style="color:white") Chat
           
           each u in users
             if u.number!='admin'&& u.number != userNumber
@@ -43,9 +44,9 @@ block content
                 td(style="color:white")= u.number
                 td(style="color:white")= u.name
                 td
-                  a.card-link(href='/users/profile/' + u.number) Profile
-                  br
-                  a(data-toggle="modal" data-id=u.number class="open-AddId btn btn-primary" href="#addId") Private message
+                  a.card-link(href='/users/profile/' + u.number) Visit
+                td
+                  button.btn.btn-secondary(data-toggle="modal" data-id=u.number class="open-AddId btn btn-primary" href="#addId") Message
 
 
 
