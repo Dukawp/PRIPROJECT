@@ -3,7 +3,7 @@ extends layout
 block content
 
   <!-- The Modal Pub -->
-  div(class="modal" id="pm")
+  div(class="modal hide" id="addId")
     div(class="modal-dialog").card
       div(class="modal-content")
       
@@ -15,15 +15,17 @@ block content
         
         <!-- Modal body -->
         div(class="modal-body")
+          <input type="text" name="myId" id="myId" value=""/>   
           form(action='/messages/newPm' method='POST') 
                 div.form-group
-                  label(for='text' class='cols-sm-2 control-label') Text:
-                  textarea(rows="4" cols="50" class='form-control' name='text' id='text')  
+                  label(for='text' class='cols-sm-2 control-label') Text
+                  textarea(rows="4" cols="50" class='form-control' name='text' id='text') 
                 div.form-group
                   button.btn.btn-primary(type='submit' style='width:100%;' ) Send
         <!-- Modal footer -->
         div(class="modal-footer")
           button(type="button" class="btn btn-danger" data-dismiss="modal") Close
+
 
   .main.container
     h1 Users
@@ -42,4 +44,26 @@ block content
                 td(style="color:white")= u.name
                 td
                   a.card-link(href='/users/profile/' + u.number) Profile
-                  button(type='button' data-toggle="modal" data-target="#pm") Private message
+                  br
+                  a(data-toggle="modal" data-id=u.number class="open-AddId btn btn-primary" href="#addId") Private message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
