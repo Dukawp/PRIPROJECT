@@ -33,6 +33,22 @@ router.get('/', verifyAuthetication, function(req, res) {
     }
 });
 
+router.post('/newPm', verifyAuthetication, function(req, res) {
+  var reg = new Date();
+  var number = req.session.passport.user;
+  console.log("------------------------>" + number)
+  axios.post('http://localhost:5012/messages', {
+    date: reg.getUTCFullYear() + '/' + reg.getUTCMonth()+1 + '/' + '0' + reg.getUTCDate() + ' ' + '0' + reg.getUTCHours() + ':' + '0' + reg.getUTCMinutes(),
+    author1: number,
+    author2: req.body.myId,
+    text: req.body.text
+  })
+    .then(data => res.redirect('/messages'))
+    .catch(error => res.render('error', {error: error}))
+})
+
+
+
 // Verify authentication
 function verifyAuthetication(req, res, next){
 

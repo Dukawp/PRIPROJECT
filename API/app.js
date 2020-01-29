@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 var groupsRouter = require('./routes/groups');
 var publicationsRouter = require('./routes/publications');
 var eventsRouter = require('./routes/events');
+var messagesRouter = require('./routes/messages');
 
 // Autenticação com JWT
 var passport = require('passport');
@@ -78,6 +79,7 @@ app.use('/users', usersRouter);
 app.use('/groups', groupsRouter);
 app.use('/publications', publicationsRouter);
 app.use('/events', eventsRouter);
+app.use('/messages', messagesRouter);
 app.use('/', publicationsRouter);
 
 // catch 404 and forward to error handler

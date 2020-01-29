@@ -15,12 +15,12 @@ block content
         
         <!-- Modal body -->
         div(class="modal-body")
-          <input type="text" name="myId" id="myId" value=""/>   
           form(action='/messages/newPm' method='POST') 
                 div.form-group
                   label(for='text' class='cols-sm-2 control-label') Text
                   textarea(rows="4" cols="50" class='form-control' name='text' id='text') 
                 div.form-group
+                  input(type="text" name="myId" id="myId" value="")   
                   button.btn.btn-primary(type='submit' style='width:100%;' ) Send
         <!-- Modal footer -->
         div(class="modal-footer")
