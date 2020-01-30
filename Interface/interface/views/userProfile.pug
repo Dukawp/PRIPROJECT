@@ -70,11 +70,12 @@ block content
                 each fi in p.files
                   if(fi.split(".")[3] == "png" || fi.split(".")[3] == "jpg" || fi.split(".")[3] == "PNG" || fi.split(".")[3] == "JPEG")
                     p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
-                    a(href=fi download)
-                      img(width='100', height='100', src=p.files)
+                    a(href="/files/"+ fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]  download)
+                      img(height='20%' width='auto' src="/files/"+fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3])
                   else
                     p.card=fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3]
-                    a(href=fi download)
+                    p=fi
+                    a(href="/files/"+ fi.split(".")[2].split("/")[3]+"."+fi.split(".")[3] download)
                       i(class='fas fa-save' style='font-size:48px;color:dark-grey')
                 hr
                 button.btn.btn-secondary(type='button' data-id=p._id class="open-AddId" data-toggle="modal" data-target="#newComment")
