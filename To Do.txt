@@ -1,19 +1,19 @@
 Ainda a fazer:
 
-1. Meter o ANTLR a funcionar com um ficheiro (atualmente, o utilizador escreve na propria interface).
+***** FEITO *****  1. Meter o ANTLR a funcionar com um ficheiro (atualmente, o utilizador escreve na propria interface).
 ***** FEITO *****  2. No feed, so mostrar as publicacoes que o utilizador pode ver.
-3. Insercao de ficheiros nas publicacoes.
+***** FEITO *****  3. Insercao de ficheiros nas publicacoes.
 ***** FEITO *****  4. Dar fix às datas quando se cria um novo Evento.
 ***** FEITO *****  5. Editar o perfil.
 ***** FEITO *****  6. Ver perfis de outros utilizadores.
 ***** FEITO *****  7. Dar uso à barra de procura na navbar.
 ***** FEITO *****  8. Melhorar a apresentacao do feed (tirar o fundo branco).
 ***** FEITO *****  9. Melhorar as paginas do admin.
-10. Ver e adicionar comentarios.
+***** FEITO *****  10. Ver e adicionar comentarios.
 ***** FEITO *****  11. Clicar num grupo/evento, e mostrar as publicacoes desse.
-12. O login nao funciona à primeira tentativa.
+***** FEITO *****  12. O login nao funciona à primeira tentativa.
 ***** FEITO *****  13. Página da team.
 ***** FEITO *****  14. Criar um logotipo personalizado (se houver tempo).
 ***** FEITO *****  15. Mudar as imagens para caber em todos os monitores.
-16. Testar todo o sistema á procura de bugs.
-17. Relatorio.
+***** FEITO *****  16. Testar todo o sistema á procura de bugs.
+***** FEITO *****  17. Relatorio.
